@@ -9,16 +9,17 @@
     th, td{
         color:rgb(255, 255, 255);
         font-weight: bold;
+        border-bottom: 1px solid rgb(35,39,42);
     }
     tr{
-        border-color:rgb(44, 47, 51)
+        border-width:0px;
     }
     .card{
         background-color:rgb(35, 39, 42);
     }
     .bg-info{
         background-color:rgb(114, 137, 218)!important;
-        border-width: 0px;
+        border:5px solid transparent;
     }
 </style>
 
@@ -39,7 +40,7 @@
         <th data-column="userID">User ID</th>
     </tr>
     <tbody id="myTable"></tbody>
-</table>
+</table#>
 
 <script>
     String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
@@ -75,7 +76,7 @@
     function search(value, data){
         var filteredData = []
         data.map(player => {
-            if(player.username.includes(value.toLowerCase())) filteredData.push(player)
+            if(player.username.toLowerCase().includes(value.toLowerCase())) filteredData.push(player)
         })
         return filteredData
     }
@@ -86,9 +87,9 @@
         table.innerHTML='';
         data.map((player, i) => {
             table.innerHTML += 
-            `<tr style="border-color:rgb(35, 39, 42);">
+            `<tr>
                 <td>${data.indexOf(player)+1}</td>
-                <td><img src = "https://cdn.discordapp.com/avatars/616498515106988073/a_71e86917789a61973b8e480ef6bc6937.gif" height="50" width="50"> ${player.username}</td>
+                <td><img src = "https://cdn.discordapp.com/avatars/616498515106988073/a_71e86917789a61973b8e480ef6bc6937.gif" height="40" width="40"> ${player.username}</td>
                 <td class="score" style="color: rgb(2, 177, 246);" stats=${JSON.stringify(player.statistics)}>${player.statistics.Score}</td>
                 <td>${new Date(player.date).toString().substr(0,15)}</td>
                 <td>${player.id}</td>
