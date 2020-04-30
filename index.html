@@ -1,117 +1,98 @@
-<!-- <html>
-<body>
-<title>subscribe</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    img{
+        border-radius: 50%
+    }
+    th, td{
+        color:rgb(255, 255, 255);
+        font-weight: bold;
+    }
+    tr{
+        border-color:rgb(44, 47, 51)
+    }
+    .card{
+        background-color:rgb(35, 39, 42);
+    }
+    .bg-info{
+        background-color:rgb(114, 137, 218)!important;
+        border-width: 0px;
+    }
+</style>
+
+<body style="background-color: rgb(35, 39, 42);"></body>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <input id="search-input" class="form-control" type="text" style="background-color:rgb(44,47,51);border-width:0px;" placeholder="Search by username...">
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <tr class="bg-info">
+        <th data-column="place">#</th>
+        <th data-column="username">Username</th>
+        <th data-column="score">Score</th>
+        <th data-column="date">Date</th>
+        <th data-column="userID">User ID</th>
+    </tr>
+    <tbody id="myTable"></tbody>
+</table>
+
 <script>
     String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
         var xhr = new XMLHttpRequest()
-        xhr.open(type? type : "GET", this, false) // true = asynchronous request | false = synchronous request
-        if(headers) headers.map(header => {
+        xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
+        if (headers) headers.map(header => {
             xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
         })
         xhr.send(send)
-        return raw? xhr.responseText : JSON.parse(xhr.responseText)
+        return raw ? xhr.responseText : JSON.parse(xhr.responseText)
     }
     String.prototype.gist_get = function(raw, fileName) {
         var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
         var idx = Object.keys(files).indexOf("normal.json")
-        console.log(idx)
-        return raw? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
+        return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
     }
- 
-    document.body.innerHTML = `<h2>${"a11b0f6379d405e8510d8d3a8d453029".gist_get(1, "normal.json")}</h2>`
-</script>
-<h1>ALRIGHT STUDENTS</h1>
-<p>we're having a test, today!</p>
-</body>
-</html> -->
+    var scoreSort = (a,b) => {return b.statistics.Score - a.statistics.Score}
+    var myArray = "a11b0f6379d405e8510d8d3a8d453029".gist_get(0, "normal.json")
+    buildTable(myArray)
 
-<div class="container">
-    <div class="page-header">
-        <h1>aznbot.mp4 Tetris Scores</h1>
-    </div>
-    <div class="row">
-        <!-- /col -->
-        <div id="tableGoesHere" class="col-md-6">
-        </div>
-        <!-- col -->
-    </div>
-    <!-- /row -->
-</div>
-<!-- container -->
-
-<script>
-String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
-    var xhr = new XMLHttpRequest()
-    xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
-    if (headers) headers.map(header => {
-        xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
+    $('#search-input').on('keyup', function(){
+        var value = $('#search-input').val()
+        var data = search(value, myArray)
+        buildTable(data)
     })
-    xhr.send(send)
-    return raw ? xhr.responseText : JSON.parse(xhr.responseText)
-}
-String.prototype.gist_get = function(raw, fileName) {
-    var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
-    var idx = Object.keys(files).indexOf("normal.json")
-    return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
-}
-/* The function */
 
-function json2table(json, classes) {
-    var cols = Object.keys(json[0]);
+    Array.from(document.getElementsByClassName('score')).map(_class => {
+        _class.addEventListener('click', cell => {
+            console.log(_class)
+        })
+    })
 
-    var headerRow = '';
-    var bodyRows = '';
-
-    classes = classes || '';
-
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    function search(value, data){
+        var filteredData = []
+        data.map(player => {
+            if(player.username.includes(value.toLowerCase())) filteredData.push(player)
+        })
+        return filteredData
     }
 
-    cols.map(function(col) {
-        headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
-    });
-
-    json.map(function(row) {
-        bodyRows += '<tr>';
-        cols.map(function(colName) {
-            bodyRows += `<td>${colName == "date"? new Date(row[colName]).toString().substr(0,15) : row[colName]}</td>`
+    function buildTable(data){
+        var table = document.getElementById('myTable')
+        var sorted = data.sort(scoreSort)
+        table.innerHTML='';
+        data.map((player, i) => {
+            table.innerHTML += 
+            `<tr style="border-color:rgb(35, 39, 42);">
+                <td>${data.indexOf(player)+1}</td>
+                <td><img src = "https://cdn.discordapp.com/avatars/616498515106988073/a_71e86917789a61973b8e480ef6bc6937.gif" height="50" width="50"> ${player.username}</td>
+                <td class="score" style="color: rgb(2, 177, 246);" stats=${JSON.stringify(player.statistics)}>${player.statistics.Score}</td>
+                <td>${new Date(player.date).toString().substr(0,15)}</td>
+                <td>${player.id}</td>
+            </tr>`
         })
-        bodyRows += '</tr>';
-    });
-
-    return '<table class="' +
-        classes +
-        '"><thead><tr>' +
-        headerRow +
-        '</tr></thead><tbody>' +
-        bodyRows +
-        '</tbody></table>';
-}
-
-/* How to use it */
-
-/* var defaultData = [
-{ country: 'China',         population: 1379510000, hi: "100" },
-{ country: 'India',         population: 1330780000, hi: "100" },
-{ country: 'United States', population:  324788000, hi: "100" },
-{ country: 'Indonesia',     population:  260581000, hi: "100" },
-{ country: 'Brazil',        population:  206855000, hi: "100" },
-]; */
-
-var defaultData = "a11b0f6379d405e8510d8d3a8d453029".gist_get(0, "normal.json")
-
-document.getElementById('tableGoesHere').innerHTML = json2table(defaultData, 'table');
-
-/* Live example */
-
-var dom = {
-    data: document.getElementById('data'),
-    table: document.getElementById('tableGoesHere'),
-};
-
-dom.data.value = JSON.stringify(defaultData);
-dom.data.addEventListener('input', function() {
-    dom.table.innerHTML = json2table(JSON.parse(dom.data.value), 'table');
-});
+    }
 </script>
