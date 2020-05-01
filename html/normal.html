@@ -1,0 +1,112 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../module/clipboard.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../css/normal.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body style="background-color: rgb(35, 39, 42);"></body>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <input 
+                id="search-input" 
+                class="form-control" 
+                type="text" 
+                style="background-color:rgb(44,47,51);border-width:0px;" 
+                placeholder="Search by Username or User ID..."
+            >
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <tr class="bg-info">
+        <th width="20px" data-column="place">#</th>
+        <th width="400px" data-column="username">Username</th>
+        <th width="100px" data-column="score">Score</th>
+        <th width="75px" data-column="time">Time</th>
+        <th width="75px" data-column="date">Date</th>
+    </tr>
+    <tbody id="leaderboard"></tbody>
+</table#>
+
+<script>
+    String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
+        var xhr = new XMLHttpRequest()
+        xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
+        if (headers) headers.map(header => {
+            xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
+        })
+        xhr.send(send)
+        return raw ? xhr.responseText : JSON.parse(xhr.responseText)
+    }
+    String.prototype.gist_get = function(raw, fileName) {
+        var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
+        var idx = fileName? Object.keys(files).indexOf(fileName) : 0
+        return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
+    }
+    var scoreSort = (a,b) => {return b.score - a.score}
+    var scores = "a11b0f6379d405e8510d8d3a8d453029".gist_get(0, "normal.json").sort(scoreSort)
+    buildTable(scores)
+
+    $('#search-input').on('input', function(){
+        var value = $('#search-input').val()
+        var data = search(value, scores)
+        buildTable(data)
+    })
+
+    new ClipboardJS('.username', { // function for copy-to-click
+        text: function(trigger) {
+            console.log(trigger)
+            return trigger.getAttribute('data-id');
+        }
+    })
+
+    function search(value, data){
+        var filteredData = []
+        data.map(player => {
+            if(player.username.toLowerCase().includes(value.toLowerCase()) || player.id.includes(value)) filteredData.push(player)
+        })
+        return filteredData
+    }
+
+    function statToString(st) {
+        const score = st.score
+        const stat = st.stat.split('|')
+        return [
+            `SCORE — ${score}`,
+            `—`.repeat(15),
+            `Single — ${stat[0]/100}`,
+            `Double — ${stat[1]/300}`,
+            `Triple — ${stat[2]/500}`,
+            `Tetris — ${stat[3]/800}`,
+            `Total T-Spins — ${stat[5]/400 + stat[6]/700 + stat[7]/900 + stat[8]/1100 + stat[9]/100 + stat[10]/100 + stat[11]/100}`,
+            `T-Spin Single — ${stat[6]/700}`,
+            `T-Spin Double — ${stat[7]/900}`,
+            `T-Spin Triple — ${stat[8]/1100}`,
+            `T-Spin Mini — ${stat[9]/100}`,
+            `Mini T-Spin Single — ${stat[10]/100}`,
+            `Mini T-Spin Double — ${stat[11]/100}`,
+            `Bonus from Combos — ${stat[15]}`,
+            `Bonus from B2B's — ${stat[16]}`,
+            `Perfect Clears — ${stat[4]/6500}`
+        ].join('<br>')
+    }
+
+    function buildTable(data){
+        var table = document.getElementById('leaderboard')
+        var sorted = JSON.parse(JSON.stringify(data)).sort(scoreSort).map(p=>{return p.username})
+        table.innerHTML='';
+        data.sort(scoreSort).map((player, i) => {
+            table.innerHTML += 
+            `<tr>
+                <td>${scores.indexOf(player)+1}</td>
+                <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="40" width="40">${player.username}</td>
+                <td class="score">${player.score}<span class="tooltiptext">${statToString(player)}</span></td>
+                <td style="text-align:center">${player.time[1]}</td>
+                <td style="text-align:center">${new Date(player.date).toString().replace(/:\d{2} \w{3}(-|\+)\d{4}/,'')}</td>
+             </tr>`
+        })
+    }
+
+// <td class="score" title="${Object.keys(player.stat).map(stat => {return `${stat} - ${player.stat[stat]}`}).join('\n')}">${player.stat.Score}</td>
+</script>

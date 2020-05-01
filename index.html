@@ -1,99 +1,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="module/clipboard.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
 
-<style>
-    img{
-        border-radius: 50%
-    }
-    th, td{
-        color:rgb(255, 255, 255);
-        font-weight: bold;
-        border-bottom: 1px solid rgb(35,39,42);
-    }
-    tr{
-        border-width:0px;
-    }
-    .card{
-        background-color:rgb(35, 39, 42);
-    }
-    .bg-info{
-        background-color:rgb(114, 137, 218)!important;
-        border:5px solid transparent;
-    }
-</style>
+<ul id="menu-bar">
+    <li class="active"><a href="#">Home</a></li>
+    <li>
+        <a href="#">aznbot.mp4 Tetris Scores</a>
+        <ul>
+            <li><a href="html/normal.html">Normal Tetris</a></li>
+            <li><a href="html/combo.html"  onclick="alert('coming soon :)')">Combo Challenge</a></li>
+            <li><a href="html/t-spin.html" onclick="alert('coming soon :)')">T-Spin Doubles Only</a></li>
+            <li><a href="html/tetris.html" onclick="alert('coming soon :)')">Tetris Only</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Useless Button</a></li>
+    <li><a href="#" onclick="alert('this button is also useless :)')">About</a></li>
+</ul>
 
-<body style="background-color: rgb(35, 39, 42);"></body>
-<div class="row">
-    <div class="col">
-        <div class="card card-body">
-            <input id="search-input" class="form-control" type="text" style="background-color:rgb(44,47,51);border-width:0px;" placeholder="Search by username...">
-        </div>
+<body style="background-color: rgb(35, 39, 42);">
+    <div style="color: white; text-align: center;">
+        so uhh, i have my own website now
     </div>
-</div>
-<table class="table table-striped">
-    <tr class="bg-info">
-        <th data-column="place">#</th>
-        <th data-column="username">Username</th>
-        <th data-column="score">Score</th>
-        <th data-column="date">Date</th>
-        <th data-column="userID">User ID</th>
-    </tr>
-    <tbody id="myTable"></tbody>
-</table#>
-
-<script>
-    String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
-        var xhr = new XMLHttpRequest()
-        xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
-        if (headers) headers.map(header => {
-            xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
-        })
-        xhr.send(send)
-        return raw ? xhr.responseText : JSON.parse(xhr.responseText)
-    }
-    String.prototype.gist_get = function(raw, fileName) {
-        var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
-        var idx = Object.keys(files).indexOf("normal.json")
-        return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
-    }
-    var scoreSort = (a,b) => {return b.statistics.Score - a.statistics.Score}
-    var myArray = "a11b0f6379d405e8510d8d3a8d453029".gist_get(0, "normal.json")
-    buildTable(myArray)
-
-    $('#search-input').on('keyup', function(){
-        var value = $('#search-input').val()
-        var data = search(value, myArray)
-        buildTable(data)
-    })
-
-    Array.from(document.getElementsByClassName('score')).map(_class => {
-        _class.addEventListener('click', cell => {
-            console.log(_class)
-        })
-    })
-
-    function search(value, data){
-        var filteredData = []
-        data.map(player => {
-            if(player.username.toLowerCase().includes(value.toLowerCase())) filteredData.push(player)
-        })
-        return filteredData
-    }
-
-    function buildTable(data){
-        var table = document.getElementById('myTable')
-        var sorted = data.sort(scoreSort)
-        table.innerHTML='';
-        data.map((player, i) => {
-            table.innerHTML += 
-            `<tr>
-                <td>${data.indexOf(player)+1}</td>
-                <td><img src = "https://cdn.discordapp.com/avatars/616498515106988073/a_71e86917789a61973b8e480ef6bc6937.gif" height="40" width="40"> ${player.username}</td>
-                <td class="score" style="color: rgb(2, 177, 246);" stats=${JSON.stringify(player.statistics)}>${player.statistics.Score}</td>
-                <td>${new Date(player.date).toString().substr(0,15)}</td>
-                <td>${player.id}</td>
-            </tr>`
-        })
-    }
-</script>
+</body>

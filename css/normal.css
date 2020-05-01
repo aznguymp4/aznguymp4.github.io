@@ -1,0 +1,84 @@
+@font-face {
+    font-family: Whitney;
+    src: url("../fonts/Whitney.ttf") format("truetype");
+}
+@font-face {
+    font-family: WhitneyBold;
+    src: url("../fonts/Whitney-Bold.ttf") format("truetype");
+}
+body {
+    font-family: Whitney;
+}
+img{
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+th, td{
+    color:rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(35,39,42);
+    vertical-align: middle;
+    white-space: nowrap;
+}
+tr{
+    border-width:0px;
+}
+.card{
+    background-color:rgb(35, 39, 42);
+}
+.bg-info{
+    background-color:rgb(114, 137, 218)!important;
+    border:5px solid transparent;
+}
+.score{
+    color:rgb(2, 177, 246);
+    cursor: context-menu;
+}
+.score:hover{
+    color:rgb(0, 100, 150);
+}
+.username:hover{
+    font-size: 0px;
+    cursor: pointer;
+}
+.username:hover:after{
+    font-size: small;
+    color: rgb(128, 128, 128);
+    content: "User ID: "attr(data-id);
+}
+.score {
+    position: relative;
+    display: inline-block;
+}
+.score .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(32, 34, 37);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 7px 10px;
+    position: absolute;
+    overflow: visible;
+    z-index: 1;
+    top: 0%;
+    right: 100%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.score .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: -20px;
+    transform: rotate(-90deg);
+    margin-left: -15px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: rgb(32, 34, 37) transparent transparent transparent;
+}
+.score:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
