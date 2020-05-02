@@ -47,6 +47,7 @@
                 return `T-Spin Doubles`
             case 'tetris':
                 scoreSort = (a,b) => {return b.stat.split('|')[3] - a.stat.split('|')[3]}
+                return `Tetrises`
         }}()
         console.log(tag)
         columns.insertBefore(tag, document.getElementById('score'))
@@ -60,6 +61,7 @@
         var data = search(value, scores)
         buildTable(data)
     })
+
 
     new ClipboardJS('.username', { // function for copy-to-click
         text: function(trigger) {
