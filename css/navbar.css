@@ -27,6 +27,13 @@ body {
     z-index: 999;
 }
 
+#menu-bar section {
+    color: #7289da;
+    text-align: center;
+    font-family: WhitneyBold;
+    padding: 10px 0px 10px 0px;
+}
+
 #menu-bar li {
     margin: 0px 0px 6px 0px;
     padding: 0px 6px 0px 6px;
@@ -36,7 +43,6 @@ body {
 }
 
 #menu-bar a {
-    font-family: Whitney;
     font-size: 12px;
     color: #E7E5E5;
     text-decoration: none;

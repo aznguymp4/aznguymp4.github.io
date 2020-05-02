@@ -1,7 +1,8 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="../module/clipboard.js"></script>
+<script src="../js/prototypes.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../css/normal.css" />
+<link rel="stylesheet" type="text/css" href="../css/leaderboard.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <body style="background-color: rgb(35, 39, 42);"></body>
@@ -19,33 +20,37 @@
     </div>
 </div>
 <table class="table table-striped">
-    <tr class="bg-info">
-        <th width="20px" data-column="place">#</th>
-        <th width="400px" data-column="username">Username</th>
-        <th width="100px" data-column="score">Score</th>
-        <th width="75px" data-column="time">Time</th>
-        <th width="75px" data-column="date">Date</th>
+    <tr class="bg-info" id="tabletop">
+        <th width="20px">#</th>
+        <th width="400px">Username</th>
+        <th width="100px" id="score">Score</th>
+        <th width="75px">Time</th>
+        <th width="75px">Date</th>
     </tr>
     <tbody id="leaderboard"></tbody>
 </table#>
 
 <script>
-    String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
-        var xhr = new XMLHttpRequest()
-        xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
-        if (headers) headers.map(header => {
-            xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
-        })
-        xhr.send(send)
-        return raw ? xhr.responseText : JSON.parse(xhr.responseText)
-    }
-    String.prototype.gist_get = function(raw, fileName) {
-        var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
-        var idx = fileName? Object.keys(files).indexOf(fileName) : 0
-        return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
-    }
+    var gameMode = getParam('mode')
     var scoreSort = (a,b) => {return b.score - a.score}
-    var scores = "a11b0f6379d405e8510d8d3a8d453029".gist_get(0, "normal.json").sort(scoreSort)
+    var columns = document.getElementById('tabletop')
+    if(gameMode !== 'normal') {
+        var arr = columns.innerHTML.split('\n')
+        var tag = document.createElement('th')
+        tag.setAttribute("width", "100px")
+        tag.innerHTML = function() { switch (gameMode) {
+            case 'combo':
+                scoreSort = (a,b) => {return (b.stat.split('|')[0]/100)-1 - (a.stat.split('|')[0]/100)-1}
+                return `Combo`
+            case 't-spin':
+                scoreSort = (a,b) => {return b.stat.split('|')[7] - a.stat.split('|')[7]}
+                return `T-Spin Doubles`
+        }}()
+        console.log(tag)
+        columns.insertBefore(tag, document.getElementById('score'))
+    }
+    console.log(columns)
+    var scores = reform("a11b0f6379d405e8510d8d3a8d453029".gist_get(0, `${gameMode}.json`)).sort(scoreSort)
     buildTable(scores)
 
     $('#search-input').on('input', function(){
@@ -60,7 +65,6 @@
             return trigger.getAttribute('data-id');
         }
     })
-
     function search(value, data){
         var filteredData = []
         data.map(player => {
@@ -68,7 +72,16 @@
         })
         return filteredData
     }
-
+    function reform(d) {
+        var arr = []
+        Object.keys(d).map(pl => {
+            d[pl].scores.map(score => {
+                delete d[pl].scores
+                arr.push(Object.assign(score, d[pl]))
+            })
+        })
+        return arr
+    }
     function statToString(st) {
         const score = st.score
         const stat = st.stat.split('|')
@@ -101,6 +114,12 @@
             `<tr>
                 <td>${scores.indexOf(player)+1}</td>
                 <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="40" width="40">${player.username}</td>
+                ${function(){switch(gameMode){
+                    case 'combo':
+                        return `<td>${player.stat.split('|')[0]/100-1 >= 0? player.stat.split('|')[0]/100-1 : 0}</td>`
+                    case 't-spin':
+                        return `<td>${player.stat.split('|')[7]/900}</td>`
+                }}()}
                 <td class="score">${player.score}<span class="tooltiptext">${statToString(player)}</span></td>
                 <td style="text-align:center">${player.time[1]}</td>
                 <td style="text-align:center">${new Date(player.date).toString().replace(/:\d{2} \w{3}(-|\+)\d{4}/,'')}</td>
