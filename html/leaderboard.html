@@ -155,6 +155,8 @@
                         return `<td>${player.stat.split('|')[7]/900}</td>`
                     case 'tetris':
                         return `<td>${player.stat.split('|')[3]/800}</td>`
+                    default:
+                        return ''
                 }}()}
                 <td class="score">${player.score}<span class="tooltiptext">${statToString(player)}</span></td>
                 <td style="text-align:center">${player.time[1]}</td>
