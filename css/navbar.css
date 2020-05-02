@@ -61,7 +61,7 @@ body {
 }
 
 #menu-bar .active a,
-#menu-bar li:hover>a {
+#menu-bar li:hover a {
     background: #2C2F33;
     color: #FFFFFF;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);

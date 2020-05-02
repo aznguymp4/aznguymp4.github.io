@@ -1,6 +1,58 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="../module/clipboard.js"></script>
+<script src="../js/prototypes.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 
 <body style="background-color: rgb(35, 39, 42);"></body>
+<ul id="menu-bar">
+    <li class="active"><a href="../index.html">Home</a></li>
+    <li>
+        <a>aznbot.mp4 Tetris</a>
+        <ul>
+            <section>Leaderboards</section>
+            <li><a href="leaderboard.html?mode=normal">Normal Tetris</a></li>
+            <li><a href="leaderboard.html?mode=combo">Combo Challenge</a></li>
+            <li><a href="leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
+            <li><a href="leaderboard.html?mode=tetris">Tetris Only</a></li>
+            <section>Settings</section>
+            <li><a href="#">Customize</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Useless Button</a></li>
+    <li><a href="#" onclick="alert('this button is also useless :)')">About</a></li>
+</ul>
+
+<!Doctype html>
+<html>
+    <head>
+        <title>Discord Token Generator</title>
+        <style>
+          .container {
+            display: flex;
+            width: 100%;
+            padding: 40px 0;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .container a {
+            background: #7289DA;
+            padding: 0 20px;
+            line-height: 35px;
+            color: #fff;
+            font-family: Whitney;
+            font-size: 12px;
+            display: block;
+            text-decoration: none;
+            border-radius: 3px;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+          <a href="https://discordapp.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznguymp4.github.io&response_type=code&scope=identify">Login through discord</a>
+        </div>
+    </body>
+</html>

@@ -40,11 +40,10 @@
 </div>
 <table class="table table-striped">
     <tr class="bg-info" id="tabletop">
-        <th width="20px">#</th>
-        <th width="400px">Username</th>
-        <th width="100px" id="score">Score</th>
-        <th width="75px">Time</th>
-        <th width="75px">Date</th>
+        <th width="5%">#</th>
+        <th width="20%">Username</th>
+        <th width="7%" id="score">Score</th>
+        <th width="15%"id="time">Time</th>
     </tr>
     <tbody id="leaderboard"></tbody>
 </table#>
@@ -56,7 +55,7 @@
     if(gameMode !== 'normal') {
         var arr = columns.innerHTML.split('\n')
         var tag = document.createElement('th')
-        tag.setAttribute("width", "100px")
+        //tag.setAttribute("width", "100px")
         tag.innerHTML = function() { switch (gameMode) {
             case 'combo':
                 scoreSort = (a,b) => {return b.stat.split('|')[0] - a.stat.split('|')[0]}
@@ -68,10 +67,14 @@
                 scoreSort = (a,b) => {return b.stat.split('|')[3] - a.stat.split('|')[3]}
                 return `Tetrises`
         }}()
-        console.log(tag)
         columns.insertBefore(tag, document.getElementById('score'))
     }
-    console.log(columns)
+    var date = document.createElement('td')
+    date.innerHTML = `Date ${new Date().toString().replace(/\w{3} \w{3} \d{2} \d{4} \d{2}:\d{2}:\d{2} \w{3}(-|\+)\d{4} /,'')}`
+    date.setAttribute('width', '10%')
+    date.setAttribute('style', 'text-align:center')
+    console.log(date)
+    columns.insertBefore(date, document.getElementById('time').nextSibling)
     var scores = reform("a11b0f6379d405e8510d8d3a8d453029".gist_get(0, `${gameMode}.json`)).sort(scoreSort)
     buildTable(scores)
 
@@ -160,7 +163,7 @@
                 }}()}
                 <td class="score">${player.score}<span class="tooltiptext">${statToString(player)}</span></td>
                 <td style="text-align:center">${player.time[1]}</td>
-                <td style="text-align:center">${new Date(player.date).toString().replace(/:\d{2} \w{3}(-|\+)\d{4}/,'')}</td>
+                <td style="text-align:center">${new Date(player.date).toString().substr(0,21)}</td>
              </tr>`
         })
     }
