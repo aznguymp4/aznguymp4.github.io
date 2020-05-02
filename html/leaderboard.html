@@ -155,7 +155,7 @@
                     case 'combo':
                         return `<td>${player.stat.split('|')[0]/100-1 >= 0? player.stat.split('|')[0]/100-1 : 0}</td>`
                     case 't-spin':
-                        return `<td>${player.stat.split('|')[7]/900}</td>`
+                        return `<td>${player.stat.split('|')[7]/900 + player.stat.split('|')[11]/100}</td>`
                     case 'tetris':
                         return `<td>${player.stat.split('|')[3]/800}</td>`
                     default:
