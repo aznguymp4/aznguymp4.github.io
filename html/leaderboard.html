@@ -16,6 +16,7 @@
                 style="background-color:rgb(44,47,51);border-width:0px;" 
                 placeholder="Search by Username or User ID..."
             >
+            <input onchange="filterDupes(this.checked)" type="checkbox" checked><label for="hideDupes" style="color:white;">Hide Duplicates</label>
         </div>
     </div>
 </div>
@@ -62,13 +63,24 @@
         buildTable(data)
     })
 
-
     new ClipboardJS('.username', { // function for copy-to-click
         text: function(trigger) {
             console.log(trigger)
             return trigger.getAttribute('data-id');
         }
     })
+    function filterDupes(cb){
+        if(cb) {
+            var s = {}
+            var filtered = scores.map(player => {
+                if(!s[player.id] || (s[player.id] && s[player.id].score <= player.score)) {
+                    s[player.id] = player.score
+                    return player
+                }
+            }).filter(a=>a)
+            buildTable(filtered, true)
+        } else buildTable(scores)
+    };filterDupes(true)
     function search(value, data){
         var filteredData = []
         data.map(player => {
@@ -109,14 +121,14 @@
         ].join('<br>')
     }
 
-    function buildTable(data){
+    function buildTable(data,useLocalIDX){
         var table = document.getElementById('leaderboard')
         var sorted = JSON.parse(JSON.stringify(data)).sort(scoreSort).map(p=>{return p.username})
         table.innerHTML='';
         data.sort(scoreSort).map((player, i) => {
             table.innerHTML += 
             `<tr>
-                <td>${scores.indexOf(player)+1}</td>
+                <td>${(useLocalIDX?data:scores).indexOf(player)+1}</td>
                 <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="40" width="40">${player.username}</td>
                 ${function(){switch(gameMode){
                     case 'combo':
