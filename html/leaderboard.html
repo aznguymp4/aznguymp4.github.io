@@ -2,10 +2,28 @@
 <script src="../module/clipboard.js"></script>
 <script src="../js/prototypes.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../css/leaderboard.css" />
+<link rel="stylesheet" type="text/css" href="../css/leaderboard.css"/>
+<link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <body style="background-color: rgb(35, 39, 42);"></body>
+<ul id="menu-bar">
+    <li class="active"><a href="../index.html">Home</a></li>
+    <li>
+        <a>aznbot.mp4 Tetris</a>
+        <ul>
+            <section>Leaderboards</section>
+            <li><a href="leaderboard.html?mode=normal">Normal Tetris</a></li>
+            <li><a href="leaderboard.html?mode=combo">Combo Challenge</a></li>
+            <li><a href="leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
+            <li><a href="leaderboard.html?mode=tetris">Tetris Only</a></li>
+            <section>Settings</section>
+            <li><a href="#" onclick="alert('coming soon')">Customize</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Useless Button</a></li>
+    <li><a href="#" onclick="alert('this button is also useless :)')">About</a></li>
+</ul>
 <div class="row">
     <div class="col">
         <div class="card card-body">
