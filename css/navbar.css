@@ -10,7 +10,7 @@ body {
     font-family: Whitney;
 }
 #menu-bar {
-    width: 95%;
+    width: 100%;
     margin: 0px 0px 0px 0px;
     padding: 6px 6px 4px 6px;
     height: 40px;
@@ -21,7 +21,7 @@ body {
     box-shadow: 0px 0px 0px #666666;
     -webkit-box-shadow: 0px 0px 0px #666666;
     -moz-box-shadow: 0px 0px 0px #666666;
-    background: #23272A;
+    background: rgba(0, 0, 0, 0.5);
     border: solid 0px #6D6D6D;
     position: relative;
     z-index: 999;
@@ -43,6 +43,7 @@ body {
 }
 
 #menu-bar a {
+    transition: all 0.15s ease-out;
     font-size: 12px;
     color: #E7E5E5;
     text-decoration: none;
@@ -64,9 +65,6 @@ body {
 #menu-bar li:hover a {
     background: #2C2F33;
     color: #FFFFFF;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
     text-shadow: 0px 0px 0px #000000;
 }
 
@@ -81,12 +79,13 @@ body {
 }
 
 #menu-bar ul a:hover {
-    background: #7289DA !important;
+    background-color: #7289DA !important;
     color: #FFFFFF !important;
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     text-shadow: 0px 0px 0px #000000;
+    transform: scale(1.05);
 }
 
 #menu-bar li:hover>ul {
@@ -94,13 +93,13 @@ body {
 }
 
 #menu-bar ul {
-    background: #3E4247;
+    background: rgb(55, 59, 63);
     display: none;
     margin: 0;
     padding: 0;
     width: 185px;
     position: absolute;
-    top: 30px;
+    top: 100%;
     left: 0;
     border: solid 0px #B4B4B4;
     border-radius: 0px;
@@ -121,8 +120,6 @@ body {
     padding: 10px 0px 10px 15px;
     color: #F0F0F0 !important;
     font-size: 12px;
-    font-family: Whitney;
-    text-shadow: 0px 0px 0px #000000;
 }
 
 #menu-bar ul li:first-child>a {

@@ -6,7 +6,11 @@
 <link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<body style="background-color: rgb(35, 39, 42);"></body>
+<body style="background-color: rgb(35, 39, 42);">
+    <title>
+        Leaderboards - aznguy.mp4
+    </title>
+</body>
 <ul id="menu-bar">
     <li class="active"><a href="../index.html">Home</a></li>
     <li>
@@ -41,7 +45,7 @@
 <table class="table table-striped">
     <tr class="bg-info" id="tabletop">
         <th width="5%">#</th>
-        <th width="20%">Username</th>
+        <th width="30%">Username</th>
         <th width="7%" id="score">Score</th>
         <th width="15%"id="time">Time</th>
     </tr>
@@ -55,7 +59,7 @@
     if(gameMode !== 'normal') {
         var arr = columns.innerHTML.split('\n')
         var tag = document.createElement('th')
-        //tag.setAttribute("width", "100px")
+        tag.setAttribute("width", "7%")
         tag.innerHTML = function() { switch (gameMode) {
             case 'combo':
                 scoreSort = (a,b) => {return b.stat.split('|')[0] - a.stat.split('|')[0]}
@@ -124,7 +128,7 @@
         const stat = st.stat.split('|')
         return [
             `SCORE — ${score}`,
-            `—`.repeat(15),
+            `—`.repeat(14),
             `Single — ${stat[0]/100}`,
             `Double — ${stat[1]/300}`,
             `Triple — ${stat[2]/500}`,

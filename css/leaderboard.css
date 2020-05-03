@@ -16,10 +16,17 @@ img{
 }
 table{
     width: 100%;
+    border: 1px solid transparent;
+}
+th{
+    text-align: center;
 }
 th, td{
-    color:rgb(255, 255, 255);
-    border-bottom: 1px solid rgb(35,39,42);
+    color: white;
+}
+th, td, .table td{
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     vertical-align: middle;
     white-space: nowrap;
 }
@@ -32,10 +39,6 @@ tr{
 .bg-info{
     background-color:rgb(114, 137, 218)!important;
     border:5px solid transparent;
-}
-.score{
-    color:rgb(2, 177, 246);
-    cursor: context-menu;
 }
 .score:hover{
     color:rgb(0, 100, 150);
@@ -52,11 +55,16 @@ tr{
 .score {
     position: relative;
     display: inline-block;
+    color:rgb(2, 177, 246);
+    vertical-align: middle;
+    font-family: WhitneyBold;
+    font-size: 17px;
+    cursor: context-menu;
 }
 .score .tooltiptext {
     visibility: hidden;
     width: 240px;
-    background-color: rgb(32, 34, 37);
+    background-color:#444;
     color: #fff;
     text-align: left;
     border-radius: 6px;
@@ -65,23 +73,24 @@ tr{
     overflow: visible;
     z-index: 1;
     top: 0%;
-    right: 100%;
+    right: 110%;
     margin-left: -120px;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: all 0.15s ease-out, opacity 0.15s;
 }
 .score .tooltiptext::after {
     content: "";
     position: absolute;
     top: 6px;
-    right: -20px;
+    right: -25px;
     transform: rotate(-90deg);
     margin-left: -15px;
     border-width: 15px;
     border-style: solid;
-    border-color: rgb(32, 34, 37) transparent transparent transparent;
+    border-color: #444 transparent transparent transparent;
 }
 .score:hover .tooltiptext {
     visibility: visible;
+    right: 100%;
     opacity: 1;
 }
