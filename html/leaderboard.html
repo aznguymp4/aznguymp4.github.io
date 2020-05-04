@@ -167,7 +167,7 @@
                 }}()}
                 <td class="score">${player.score}<span class="tooltiptext">${statToString(player)}</span></td>
                 <td style="text-align:center">${player.time[1]}</td>
-                <td style="text-align:center">${new Date(player.date).toString().substr(0,21)}</td>
+                <td style="text-align:center">${time12hr(new Date(player.date))}</td>
              </tr>`
         })
     }
