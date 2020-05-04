@@ -61,6 +61,10 @@ body {
     margin: 0;
 }
 
+#menu-bar .active a {
+    font-family: WhitneyBold;
+}
+
 #menu-bar .active a,
 #menu-bar li:hover a {
     background: #2C2F33;
@@ -72,7 +76,7 @@ body {
 #menu-bar li:hover li a {
     background: none;
     border: none;
-    color: #666;
+    color: #333;
     -box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -97,7 +101,7 @@ body {
     transform: scaleY(0);
     transition: all 0.2s ease-out;
     opacity: 0;
-    background: rgb(55, 59, 63);
+    background: #333;
     display: block;
     margin: 0;
     padding: 0;
@@ -105,7 +109,7 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    border: solid 0px #B4B4B4;
+    border: solid 0px transparent;
     border-radius: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
