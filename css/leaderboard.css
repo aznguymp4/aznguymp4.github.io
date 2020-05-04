@@ -81,7 +81,7 @@ tr{
 .score .tooltiptext::after {
     content: "";
     position: absolute;
-    top: 6px;
+    top: 18px;
     right: -25px;
     transform: rotate(-90deg);
     margin-left: -15px;

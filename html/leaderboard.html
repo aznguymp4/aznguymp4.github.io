@@ -19,8 +19,8 @@
             <section>Leaderboards</section>
             <li><a href="leaderboard.html?mode=normal">Normal Tetris</a></li>
             <li><a href="leaderboard.html?mode=combo">Combo Challenge</a></li>
-            <li><a href="leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
             <li><a href="leaderboard.html?mode=tetris">Tetris Only</a></li>
+            <li><a href="leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
             <section>Settings</section>
             <li><a href="#" onclick="alert('coming soon')">Customize</a></li>
         </ul>
@@ -45,7 +45,7 @@
 <table class="table table-striped">
     <tr class="bg-info" id="tabletop">
         <th width="5%">#</th>
-        <th width="30%">Username</th>
+        <th width="auto">Username</th>
         <th width="7%" id="score">Score</th>
         <th width="15%"id="time">Time</th>
     </tr>
@@ -79,7 +79,7 @@
     date.setAttribute('style', 'text-align:center')
     console.log(date)
     columns.insertBefore(date, document.getElementById('time').nextSibling)
-    var scores = reform("a11b0f6379d405e8510d8d3a8d453029".gist_get(0, `${gameMode}.json`)).sort(scoreSort)
+    var scores = reform("a11b0f6379d405e8510d8d3a8d453029".gist_get(0, `${gameMode}.json`)).sort(scoreSort).filter(function(v,i,a) { return a.map(sc=>{return sc.stat}).indexOf(v.stat) == i })
     buildTable(scores)
 
     $('#search-input').on('input', function(){
@@ -153,7 +153,7 @@
         data.sort(scoreSort).map((player, i) => {
             table.innerHTML += 
             `<tr>
-                <td>${(useLocalIDX?data:scores).indexOf(player)+1}</td>
+                <td style="text-align:center">${(useLocalIDX?data:scores).indexOf(player)+1}</td>
                 <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="40" width="40">${player.username}</td>
                 ${function(){switch(gameMode){
                     case 'combo':
