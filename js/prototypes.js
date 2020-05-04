@@ -24,3 +24,11 @@ function getParam(sParam) {
         }
     }
 }
+function time12hr(date) {
+  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  var hours = date.getHours()
+  var minutes = date.getMinutes()
+  hours = hours%12 ? hours%12 : 12 // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${minutes} ${hours >= 12? "PM" : "AM"}`
+}
