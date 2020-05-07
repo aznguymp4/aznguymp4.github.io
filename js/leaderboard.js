@@ -99,7 +99,7 @@ function buildTable(data,useLocalIDX){
         table.innerHTML += 
         `<tr>
             <td style="text-align:center">${(useLocalIDX?data:scores).indexOf(player)+1}</td>
-            <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="40" width="40">${player.username}</td>
+            <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar}" height="30" width="30">${player.username}</td>
             ${function(){switch(gameMode){
                 case 'combo':
                     return `<td>${player.stat.split('|')[0]/100-1 >= 0? player.stat.split('|')[0]/100-1 : 0}</td>`
@@ -116,5 +116,3 @@ function buildTable(data,useLocalIDX){
             </tr>`
     })
 }
-
-// <td class="score" title="${Object.keys(player.stat).map(stat => {return `${stat} - ${player.stat[stat]}`}).join('\n')}">${player.stat.Score}</td>
