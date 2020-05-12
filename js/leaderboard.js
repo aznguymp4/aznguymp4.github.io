@@ -7,7 +7,7 @@ if(gameMode !== 'normal') {
     tag.setAttribute("width", "7%")
     tag.innerHTML = function() { switch (gameMode) {
         case 'sprint':
-            scoreSort = (a,b) => {return b.time[0] - a.time[1] || cmp(b.score,a.score)}
+            scoreSort = (a,b) => {return a.time[0] - b.time[0] || cmp(b.score,a.score)}
             return `Time`
         case 'combo':
             scoreSort = (a,b) => {return b.stat.split('|')[0] - a.stat.split('|')[0] || cmp(b.score,a.score)}
