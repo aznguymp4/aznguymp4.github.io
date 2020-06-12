@@ -6,10 +6,8 @@
     font-family: WhitneyBold;
     src: url("../fonts/Whitney-Bold.ttf") format("truetype");
 }
-body {
-    font-family: Whitney;
-}
 #menu-bar {
+    font-family: Whitney !important;
     width: 100%;
     margin: 0px 0px 0px 0px;
     padding: 6px 6px 4px 6px;
@@ -31,13 +29,14 @@ body {
     color: #7289da;
     text-align: center;
     font-family: WhitneyBold;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0px 10px 0px !important;
 }
 
 #menu-bar li {
     margin: 0px 0px 6px 0px;
     padding: 0px 6px 0px 6px;
     float: left;
+    text-align: left;
     position: relative;
     list-style: none;
 }

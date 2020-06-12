@@ -1,0 +1,52 @@
+@font-face {
+font-family: Nunito;
+src: url("../fonts/Nunito.woff2") format("woff2");
+}
+body {
+background-color: rgb(35, 39, 42);
+text-align: center;
+color: white;
+font-family: Nunito;
+font-size: larger;
+}
+textarea {
+border-radius: 10px;
+background: #fff;
+}
+button {
+font-family: 'Nunito', sans-serif;
+border-radius: 5px;
+border-style: none;
+color: #fff;
+font-size: 24px;
+padding: 14px;
+background: #3b88c3;
+text-decoration: none;
+transition: all 0.2s;
+}
+button:hover {
+cursor: pointer;
+background: #4eb1ff;
+text-decoration: none;
+}
+textarea::placeholder{
+color: #555;
+}
+textarea{
+background-color: #2f3136;
+color: white;
+border: transparent;
+font-size: medium;
+font-family: Whitney;
+resize: none;
+height: 200px;
+width: 420px;
+}
+.textcontainer {
+padding: 20px;
+display:inline-flex;
+}
+.float{
+width: auto;
+padding: 20px;
+}
