@@ -79,19 +79,8 @@ tr{
     opacity: 0;
     transition: all 0.15s ease-out, opacity 0.15s;
 }
-.score .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 18px;
-    right: -25px;
-    transform: rotate(-90deg);
-    margin-left: -15px;
-    border-width: 15px;
-    border-style: solid;
-    border-color: #444 transparent transparent transparent;
-}
 .score:hover .tooltiptext {
     visibility: visible;
     right: 100%;
-    opacity: 1;
+    opacity: 0.9;
 }
