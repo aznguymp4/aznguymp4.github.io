@@ -103,7 +103,7 @@ function buildTable(data,useLocalIDX){
         table.innerHTML += 
         `<tr>
             <td style="text-align:center">${(useLocalIDX?data:scores).indexOf(player)+1}</td>
-            <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar == 'N/A'? 'https://cdn.discordapp.com/embed/avatars/${Math.floor(Math.random() * 5)}.png' : player.avatar}" height="30" width="30">${player.username}</td>
+            <td class="username" title="Click to Copy User ID" data-id="${player.id}"><img src="${player.avatar == 'N/A'? `https://cdn.discordapp.com/embed/avatars/${Math.floor(Math.random() * 5)}.png` : player.avatar}" height="30" width="30">${player.username}</td>
             ${function(){switch(gameMode){
                 case 'sprint':
                     $('#time').remove()
