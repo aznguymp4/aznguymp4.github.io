@@ -1,14 +1,16 @@
-String.prototype.getContents = function(raw, type, send, headers) { // Get contents from a URL (string containing 1 URL)
+function getContents(url, raw, type, send, headers) { // Get contents from a URL
     var xhr = new XMLHttpRequest()
-    xhr.open(type ? type : "GET", this, false) // true = asynchronous request | false = synchronous request
-    if (headers) headers.map(header => {
+    xhr.open(type ? type : "GET", url, false) // true = asynchronous request | false = synchronous request
+   /*  if(headers) headers.map(header => {
         xhr.setRequestHeader(Object.keys(header)[0], Object.values(header)[0])
     })
+ */
+    if(headers) Object.keys(headers).map(key => {xhr.setRequestHeader(key, headers[key]) })
     xhr.send(send)
     return raw ? xhr.responseText : JSON.parse(xhr.responseText)
 }
-String.prototype.gist_get = function(raw, fileName) {
-    var files = JSON.parse(`https://api.github.com/gists/${this}`.getContents(1)).files
+function gistGet(ID, raw, fileName) {
+    var files = JSON.parse(getContents(`https://api.github.com/gists/${ID}`, 1)).files
     var idx = fileName? Object.keys(files).indexOf(fileName) : 0
     return raw ? files[Object.keys(files)[idx]].content : JSON.parse(files[Object.keys(files)[idx]].content)
 }

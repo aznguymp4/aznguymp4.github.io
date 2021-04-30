@@ -1,58 +1,146 @@
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="../module/clipboard.js"></script>
-<script src="../js/prototypes.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-<body style="background-color: rgb(35, 39, 42);"></body>
+<style>
+body{
+background-color: rgb(35, 39, 42);
+font-family: Whitney;
+color: white;
+}
+#NotLoggedIn{
+color: white;
+text-align: center;
+font-family: Whitney;
+font-size: xx-large;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, 0); 
+}
+.login {
+display: flex;
+width: 100%;
+padding: 40px 0;
+align-items: center;
+justify-content: center;
+}
+.login a {
+background: #7289DA;
+padding: 0 20px;
+line-height: 40px;
+color: #fff;
+font-family: Whitney;
+font-size: 14px;
+display: block;
+text-decoration: none;
+border-radius: 3px;
+transition: all 0.15s ease-out, opacity 0.15s;
+}
+.login a:hover{
+background: rgb(90, 110, 184);
+}
+#Authorized{
+text-align: center;
+}
+#skinsel{
+text-align: left;
+padding: 20px 20px 20px 20px;
+border: 3px solid white;
+}
+.section{
+font-family: WhitneyBold;
+font-size: x-large;
+}
+</style>
+
 <ul id="menu-bar">
-    <li class="active"><a href="../index.html">Home</a></li>
+    <li class="active"><a href="#">Home</a></li>
     <li>
-        <a>aznbot.mp4 Tetris</a>
+        <a href="./leaderboard.html">aznbot.mp4 Tetris</a>
         <ul>
             <section>Leaderboards</section>
-            <li><a href="leaderboard.html?mode=normal">Normal Tetris</a></li>
-            <li><a href="leaderboard.html?mode=combo">Combo Challenge</a></li>
-            <li><a href="leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
-            <li><a href="leaderboard.html?mode=tetris">Tetris Only</a></li>
+            <li><a href="./leaderboard.html">Normal Tetris</a></li>
+            <li><a href="./leaderboard.html?mode=sprint">Sprint</a></li>
+            <li><a href="./leaderboard.html?mode=combo">Combo Challenge</a></li>
+            <li><a href="./leaderboard.html?mode=tetris">Tetris Only</a></li>
+            <li><a href="./leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
             <section>Settings</section>
-            <li><a href="#">Customize</a></li>
+            <li><a href="#" onclick="alert('coming soon')">Customize</a></li>
         </ul>
     </li>
-    <li><a href="#">Useless Button</a></li>
-    <li><a href="#" onclick="alert('this button is also useless :)')">About</a></li>
+    <li>
+        <a href="#">Discord Tools</a>
+        <ul>
+            <li><a href="./DiscordTools/regional.html">Regional Indicator Generator</a></li>
+        </ul>
+    </li>
+    <li><a href="#" onclick="alert('this button is useless for now :)')">About</a></li>
+    <li><a class="button" href="./invite.html">Invite aznbot.mp4</a></li>
 </ul>
 
-<!Doctype html>
-<html>
-    <head>
-        <title>Discord Token Generator</title>
-        <style>
-          .container {
-            display: flex;
-            width: 100%;
-            padding: 40px 0;
-            align-items: center;
-            justify-content: center;
-          }
-          
-          .container a {
-            background: #7289DA;
-            padding: 0 20px;
-            line-height: 35px;
-            color: #fff;
-            font-family: Whitney;
-            font-size: 12px;
-            display: block;
-            text-decoration: none;
-            border-radius: 3px;
-          }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-          <a href="https://discordapp.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznguymp4.github.io&response_type=code&scope=identify">Login through discord</a>
+<body>
+    <div id="NotLoggedIn" style="display:none;">
+        You are not logged in
+        <div class="login">
+            <a href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=http%3A%2F%2Flocalhost%3A5500%2Fhtml%2Fcustomize.html&response_type=code&scope=identify">Login with Discord</a>
         </div>
-    </body>
-</html>
+    </div>
+    <div id="Authorized" style="display:none;">
+        <br>
+        <div id="username">
+            Logged in as 
+        </div>
+        <br>
+        <h2 style="font-family: WhitneyBold;">
+            Customize your game
+        </h2>
+
+        <form id="skinsel">
+            <div class="section">Mino Skin Style</div>
+        </form>
+    </div>
+</body>
+
+<script src="../js/functions.js"></script>
+<script> // login with discord
+    var Oauth = {
+        clientID: "622243899469201438",
+        clientSecret: "-ovrNT1ynQDSy5hLnciuCex3mxbaGqlk",
+        scope: "identify",
+        code: code,
+        redirectURI: "http://localhost:5500/html/customize.html",
+        discordLoginURL: "https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=http%3A%2F%2Flocalhost%3A5500%2Fhtml%2Fcustomize.html&response_type=code&scope=identify%20guilds",
+        discordTokenURL: "https://discord.com/api/oauth2/token",
+        discordBaseURL: "https://discord.com/api"
+    }
+
+    var code = getParam('code')
+    if(!code) document.getElementById("NotLoggedIn").style.display = "block"
+    else {
+        document.getElementById("Authorized").style.display = "block"
+        var accessToken = getAccessToken(code)["access_token"]
+        var user = getContents(Oauth.discordBaseURL+'/users/@me', 0, 'GET', null, {'authorization': `Bearer ${accessToken}`})
+        document.getElementById('username').innerHTML += `<img style="border-radius:50%;" width=48 src='https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_')?'gif':'png'}'> ${user.username}#${user.discriminator}`
+        // Logged in - load skins
+        
+        var skins = ["arika","blopix","brick","circle","crayon","emoji","friends","gameboy","glossy","gradient","incept","legends","lego","minecraft","minimal","missingtextures","modern","puyo","puyotetris","retro","sega","star","tetra","tetrimino","tetris99","tetrisfriends","unicode","yinyang"]
+        var skinPrefs = gistGet("bd1873eed1d053b538a29bff5981f7ca", 0, "minoSkinPrefs.json")
+        var skin = skinPrefs[user.id] || 'puyotetris'
+        skins.map(skinname => {
+            document.getElementById("skinsel").innerHTML += `<input name="skintype" type="radio" ${skinname == skin?'checked':''} value="${skinname}"/>${skinname}<br>`
+        })
+
+    }
+    
+    function getAccessToken(code2) {
+        /* data = `client_id=${Oauth.clientID}&client_secret=${Oauth.clientSecret}&grant_type=authorization_code&code=${code2}&redirect_uri=${Oauth.redirectURI}&scope=${Oauth.scope}`
+        headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+        var accessToken = getContents(Oauth.discordTokenURL, 0, 'POST', data, headers)
+        console.log(accessToken) */
+        return {"access_token": "o2vBwbHLcFmpfNtF1w5Q4Y73pQ7JFc"}
+        // return accessToken
+    }
+</script>
+
+<!-- o2vBwbHLcFmpfNtF1w5Q4Y73pQ7JFc -->

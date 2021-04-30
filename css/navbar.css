@@ -149,3 +149,15 @@ html[xmlns] #menu-bar {
 * html #menu-bar {
     height: 1%;
 }
+.button {
+    background: #7289DA;
+    padding: 10px 10px;
+    line-height: 15px;
+    color: #fff;
+    font-family: Whitney;
+    font-size: 12px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+}

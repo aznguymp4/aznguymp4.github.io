@@ -26,7 +26,7 @@ date.innerHTML = `Date ${new Date().toString().replace(/\w{3} \w{3} \d{2} \d{4} 
 date.setAttribute('width', '10%')
 date.setAttribute('style', 'text-align:center')
 columns.insertBefore(date, document.getElementById('time').nextSibling)
-var scores = reform("a11b0f6379d405e8510d8d3a8d453029".gist_get(0, `${gameMode}.json`)).sort(scoreSort).filter(function(v,i,a) { return a.map(sc=>{return sc.stat}).indexOf(v.stat) == i })
+var scores = reform(gistGet("a11b0f6379d405e8510d8d3a8d453029", 0, `${gameMode}.json`)).sort(scoreSort).filter(function(v,i,a) { return a.map(sc=>{return sc.stat}).indexOf(v.stat) == i })
 buildTable(scores)
 
 $('#search-input').on('input', function(){
