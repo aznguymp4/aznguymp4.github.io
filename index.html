@@ -1,4 +1,5 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="js/functions.js"></script>
 <script src="module/clipboard.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
@@ -33,7 +34,6 @@
             <li><a href="schoolTeto">SchoolTeto</a></li>
         </ul>
     </li>
-    <li><a href="#" onclick="alert('this button is useless for now :)')">About</a></li>
     <li><a class="button" href="html/invite.html">Invite aznbot.mp4</a></li>
 </ul>
 
@@ -42,11 +42,33 @@
     <h2 class="animate__animated animate__zoomInDown" style="animation-duration:1.5s; color: white; text-align: center; font-family:WhitneyBold">
         this is my random website i guess...
     </h2>
-    <h6 class="animate__animated animate__jackInTheBox" style="animation-delay:1.5s; animation-duration:1s; color: grey; text-align: center; font-family:Whitney">
+    <h6 class="animate__animated animate__jackInTheBox" style="animation-delay:1s; animation-duration:1s; color: grey; text-align: center; font-family:Whitney">
         i'll just list my projects here :)
     </h6>
 
-    <div class="container">
-        <a class="button" href="#" onclick="alert('Coming soon\n(for aznbot.mp4 Tetris)')">Login with Discord</a>
-    </div>
+    <div class="container" id="loggedAs"></div>
+    <div class="container" id="loginBtn"><a class="button" id="btnIN" href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznbotmp4.herokuapp.com%2F&response_type=code&scope=identify">Login with Discord</a></div>
 </body>
+
+<script>
+    var token = getParam('oauthT')
+    if(token) setCookie('token', token, 7);
+
+    if(getCookie('token')) { token = getCookie('token')
+        fetch('https://discord.com/api/users/@me', {headers: {Authorization: `Bearer ${token}`}, method: 'GET'}).then(async response2 => {
+            const jsonRes = await response2.json()
+            console.log(token, jsonRes)
+            if(jsonRes.message) {
+                setCookie('token', '', 0)
+            } else {
+                var btn = $(`#btnIN`)
+                btn.html('Log Out')
+                btn.css({'background-color': '#ED4245'})
+                btn.on('click', () => {setCookie('token', '', 0)})
+                document.getElementById('btnIN').href = window.location.origin
+
+                $(`#loggedAs`).html(`<img class="pfp" src="https://cdn.discordapp.com/avatars/${jsonRes.id}/${jsonRes.avatar}.png">Logged in as ${jsonRes.username}`)
+            }
+        })
+    }
+</script>

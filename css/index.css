@@ -1,7 +1,16 @@
 .container {
-display: flex;
-width: 100%;
-padding: 20px 0;
-align-items: center;
-justify-content: center;
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+    font-family: Whitney;
+    color: white;
+}
+
+.pfp {
+    border-radius: 50%;
+    height: 38px;
+    display: inline;
+    margin: 8px;
 }

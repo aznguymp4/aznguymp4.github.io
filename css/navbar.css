@@ -26,7 +26,7 @@
 }
 
 #menu-bar section {
-    color: #7289da;
+    color: #5865F2;
     text-align: center;
     font-family: WhitneyBold;
     padding: 10px 0px 10px 0px !important;
@@ -74,7 +74,7 @@
 }
 
 #menu-bar ul a:hover {
-    background-color: #7289DA !important;
+    background-color: #5865F2 !important;
     color: #FFFFFF !important;
     font-family: WhitneyBold;
     transform: scale(1.05);
@@ -150,7 +150,7 @@ html[xmlns] #menu-bar {
     height: 1%;
 }
 .button {
-    background: #7289DA;
+    background: #5865F2;
     padding: 10px 10px;
     line-height: 15px;
     color: #fff;

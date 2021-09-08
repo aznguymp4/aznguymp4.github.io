@@ -34,3 +34,20 @@ function time12hr(date) {
     minutes = minutes < 10 ? '0'+minutes : minutes
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${minutes} ${hours >= 12? "AM" : "PM"}`
 }
+
+function setCookie(e, t, n) {
+    const o = new Date;
+    o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3);
+    let i = "expires=" + o.toUTCString();
+    document.cookie = e + "=" + t + ";" + i + ";path=/"
+}
+
+function getCookie(e) {
+    let t = e + "=", n = decodeURIComponent(document.cookie).split(";");
+    for (let e = 0; e < n.length; e++) {
+        let o = n[e];
+        for (;" " == o.charAt(0);) o = o.substring(1);
+        if (0 == o.indexOf(t)) return o.substring(t.length, o.length)
+    }
+    return ""
+}
