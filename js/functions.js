@@ -24,7 +24,7 @@ function getParam(sParam) {
         {
             return sParameterName[1];
         }
-    }
+    } 
 }
 function time12hr(date) {
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
@@ -34,14 +34,15 @@ function time12hr(date) {
     minutes = minutes < 10 ? '0'+minutes : minutes
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${minutes} ${hours >= 12? "AM" : "PM"}`
 }
-
+function extractNums(str) {
+    return str.replace(/[^.\d]/g,'')
+}
 function setCookie(e, t, n) {
     const o = new Date;
     o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3);
     let i = "expires=" + o.toUTCString();
     document.cookie = e + "=" + t + ";" + i + ";path=/"
 }
-
 function getCookie(e) {
     let t = e + "=", n = decodeURIComponent(document.cookie).split(";");
     for (let e = 0; e < n.length; e++) {
@@ -50,4 +51,16 @@ function getCookie(e) {
         if (0 == o.indexOf(t)) return o.substring(t.length, o.length)
     }
     return ""
+}
+function checkToken(token) {
+    return new Promise((res,rej) => {
+        fetch('https://discord.com/api/users/@me', {headers: {Authorization: `Bearer ${token}`}, method: 'GET'}).then(async response2 => {
+            const jsonRes = await response2.json()
+            if(jsonRes.message) {
+                rej('Invalid Token')
+            } else {
+                res(token)
+            }
+        })
+    })
 }

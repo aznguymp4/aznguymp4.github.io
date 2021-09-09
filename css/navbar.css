@@ -61,7 +61,7 @@
 }
 
 #menu-bar .active a,
-#menu-bar li:hover a {
+#menu-bar li:hover a, .button:hover {
     background: #2C2F33;
     color: #FFFFFF;
 }
@@ -151,13 +151,16 @@ html[xmlns] #menu-bar {
 }
 .button {
     background: #5865F2;
+    border: none;
     padding: 10px 10px;
     line-height: 15px;
     color: #fff;
     font-family: Whitney;
-    font-size: 12px;
+    font-size: 13px;
     display: block;
     text-align: center;
     text-decoration: none;
+    width: fit-content;
     border-radius: 3px;
+    transition: all 0.2s ease-out;
 }

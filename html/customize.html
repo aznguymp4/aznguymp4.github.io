@@ -4,58 +4,74 @@
 
 <style>
 body{
-background-color: rgb(35, 39, 42);
-font-family: Whitney;
-color: white;
+    background-color: rgb(35, 39, 42);
+    font-family: Whitney;
+    color: white;
 }
-#NotLoggedIn{
-color: white;
-text-align: center;
-font-family: Whitney;
-font-size: xx-large;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, 0); 
+.center {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
-.login {
-display: flex;
-width: 100%;
-padding: 40px 0;
-align-items: center;
-justify-content: center;
+
+label:hover{
+    cursor: pointer;
 }
-.login a {
-background: #5865F2;
-padding: 0 20px;
-line-height: 40px;
-color: #fff;
-font-family: Whitney;
-font-size: 14px;
-display: block;
-text-decoration: none;
-border-radius: 3px;
-transition: all 0.15s ease-out, opacity 0.15s;
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
 }
-.login a:hover{
-background: rgb(90, 110, 184);
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
 }
-#Authorized{
-text-align: center;
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #414850;
+    border-radius: 50%;
+    background: #2a2f34;
 }
-#skinsel{
-text-align: left;
-padding: 20px 20px 20px 20px;
-border: 3px solid white;
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #7289da;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
-.section{
-font-family: WhitneyBold;
-font-size: x-large;
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 </style>
 
 <ul id="menu-bar">
-    <li class="active"><a href="#">Home</a></li>
+    <li class="active"><a href="../index.html">Home</a></li>
     <li>
         <a href="./leaderboard.html">aznbot.mp4 Tetris</a>
         <ul>
@@ -78,15 +94,103 @@ font-size: x-large;
             <li><a href="../schoolTeto">SchoolTeto</a></li>    
         </ul>
     </li>
-    <li><a href="#" onclick="alert('this button is useless for now :)')">About</a></li>
     <li><a class="button" href="./invite.html">Invite aznbot.mp4</a></li>
 </ul>
 
-<body>
-    
+<body style="overflow-y: auto;">
+    <h2 id="loading" class="center"> <img src="https://cdn.discordapp.com/emojis/617153686602383379.gif"> Loading...</h2>
+    <h2 id="notlogged" class="center" style="visibility: hidden;">
+        You're not logged in!<br>.<br>.<br>.
+        <a class="button" style="margin: auto;" href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznbotmp4.herokuapp.com%2F&response_type=code&scope=identify">Log in with Discord</a>
+    </h2>
+
+    <div id="divForm" style="visibility: hidden; padding: 20px;">
+        <h2 style="font-family: WhitneyBold; text-align: center;">Select Mino Skin</h2>
+        <form id="form">
+            <div style="margin: auto; width: fit-content; display: flex; padding: 20px; background-color: 1b1e21; border-radius: 10px;">
+                <div id="l"></div>
+                <div style="visibility:hidden;">m</div>
+                <div id="r"></div>
+                <div style="visibility:hidden;">m</div>
+                <div id="preview" style="padding: 10px; border-radius: 8px; margin: auto; width: fit-content; text-align: center; background-color: #2f3136;"></div>
+            </div>
+            <br>
+            <input type="submit" class="button" id="save" style="margin: auto; text-decoration: none;" value="Save Changes">
+            <br>
+        </form>
+        <br>
+    </div>
 </body>
 
 <script src="../js/functions.js"></script>
 <script>
+    const preview = `\
+     .,.,.,.,.,.,T,.,.,.,
+    ,.,.,.,.,.,T,T,.,.,I,
+    ,.,.,.,.,.,.,T,.,.,I,
+    ,J,J,T,.,.,.,.,.,Z,I,
+    ,J,T,T,L,.,.,.,Z,Z,I,
+    ,J,I,T,L,.,.,GT,Z,O,O,
+    ,I,I,S,L,L,GT,GT,.,O,O,
+    ,I,I,S,S,O,O,GT,J,J,Z,
+    ,I,I,S,S,O,O,.,J,Z,Z,
+    ,I,T,S,S,O,O,.,J,Z,L,
+    ,T,T,L,S,O,O,.,L,L,L,
+    ,T,T,L,J,J,J,.,L,L,L,
+    ,T,T,L,L,S,J,.,L,O,O,
+    ,T,Z,Z,Z,S,S,.,J,O,O,
+    ,Z,Z,S,Z,Z,S,.,J,J,J,
+    ,_,_,_,_,_,.,_,_,_,_,
+    ,_,_,_,_,_,.,_,_,_,_,
+    ,_,_,_,.,_,_,_,_,_,_,
+    ,_,.,_,_,_,_,_,_,_,_,
+    ,_,_,.,_,_,_,_,_,_,_,
+    ,_,_,_,_,_,_,.,_,_,_`.replace(/ /g,'')
+    const form = document.getElementById('form')
+    const l = document.getElementById('l')
+    const r = document.getElementById('r')
+    var token = getCookie('token')
+    if(token) {
+        checkToken(token).then(async () => {
+            var currentSkin = await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json().data
 
+            fetch("https://aznbotmp4.herokuapp.com/berisbot/skins",{method:'GET'}).then(async res => {
+                const skins = await res.json()
+                console.log(skins)
+                Object.keys(skins).map((skin,idx) => {
+                    var emojis = ''
+                    'ZLOSIJT_'.split('').map(emoji => {
+                        emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=24>`
+                    });
+                    (~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
+                })
+
+                $(`#${currentSkin}`).click()
+                $('#loading').css({visibility:'hidden'})
+                $('#divForm').css({visibility:'visible'})
+
+                $('#form').on('change', function(a) {
+                    upd8Preview(skins, a.target.value)
+                })
+
+                upd8Preview(skins, currentSkin)
+            })
+
+            $('#save').on('click', function() {
+                console.log($('#form').value)
+            })
+        })
+    } else {
+        $('#loading').css({visibility: 'hidden'})
+        $('#notlogged').css({visibility: 'visible'})
+    }
+
+    function upd8Preview(skins, current) {
+        var previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
+        preview.split(',').map(p => {
+            var emoji = skins[current][p]
+            previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=24>`
+        })
+        $('#preview').html(previewHTML)
+    }
 </script>
