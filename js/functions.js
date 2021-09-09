@@ -59,7 +59,7 @@ function checkToken(token) {
             if(jsonRes.message) {
                 rej('Invalid Token')
             } else {
-                res(token)
+                res(jsonRes)
             }
         })
     })

@@ -82,7 +82,7 @@ label:hover{
             <li><a href="./leaderboard.html?mode=tetris">Tetris Only</a></li>
             <li><a href="./leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
             <section>Settings</section>
-            <li><a href="#" onclick="alert('coming soon')">Customize</a></li>
+            <li><a href="#">Customize</a></li>
         </ul>
     </li>
     <li>
@@ -151,35 +151,42 @@ label:hover{
     const r = document.getElementById('r')
     var token = getCookie('token')
     if(token) {
-        checkToken(token).then(async () => {
-            var currentSkin = await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json().data
+        var pickParam = getParam('pickedSkin')
+        if(pickParam) {
+            fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, method:'POST' }).then(async res => {
+                $('#loading').html(`${res.status==200?'🎉 Mino Skin successfully set!':'❌ Something went wrong...'}<h3></h3><a class="button" style="margin: auto;" href="../index.html">Back to Home</a>`)
+            })
+        } else {
+            checkToken(token).then(async () => {
+                var currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json()).data
 
-            fetch("https://aznbotmp4.herokuapp.com/berisbot/skins",{method:'GET'}).then(async res => {
-                const skins = await res.json()
-                console.log(skins)
-                Object.keys(skins).map((skin,idx) => {
-                    var emojis = ''
-                    'ZLOSIJT_'.split('').map(emoji => {
-                        emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=24>`
-                    });
-                    (~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
+                fetch("https://aznbotmp4.herokuapp.com/berisbot/skins",{method:'GET'}).then(async res => {
+                    const skins = await res.json()
+                    console.log(skins)
+                    Object.keys(skins).map((skin,idx) => {
+                        var emojis = ''
+                        'ZLOSIJT_'.split('').map(emoji => {
+                            emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=24>`
+                        });
+                        (~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
+                    })
+
+                    $(`#${currentSkin}`).click()
+                    $('#loading').css({visibility:'hidden'})
+                    $('#divForm').css({visibility:'visible'})
+
+                    $('#form').on('change', function(a) {
+                        upd8Preview(skins, a.target.value)
+                    })
+
+                    upd8Preview(skins, currentSkin)
                 })
 
-                $(`#${currentSkin}`).click()
-                $('#loading').css({visibility:'hidden'})
-                $('#divForm').css({visibility:'visible'})
-
-                $('#form').on('change', function(a) {
-                    upd8Preview(skins, a.target.value)
+                $('#save').on('click', function() {
+                    console.log($('#form').value)
                 })
-
-                upd8Preview(skins, currentSkin)
             })
-
-            $('#save').on('click', function() {
-                console.log($('#form').value)
-            })
-        })
+        }
     } else {
         $('#loading').css({visibility: 'hidden'})
         $('#notlogged').css({visibility: 'visible'})
