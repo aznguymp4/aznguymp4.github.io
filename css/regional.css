@@ -39,14 +39,11 @@ border: transparent;
 font-size: medium;
 font-family: Whitney;
 resize: none;
-height: 200px;
-width: 420px;
+height: 120px;
+width: 100%;
 }
-.textcontainer {
-padding: 20px;
-display:inline-flex;
-}
-.float{
-width: auto;
-padding: 20px;
+.textArea{
+margin: auto;
+width: 100%;
+max-width: 420px;
 }

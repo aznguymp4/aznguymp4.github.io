@@ -4,61 +4,59 @@
 <link rel="stylesheet" type="text/css" href="../../css/regional.css"/>
 
 <head>
-    <title>Regional Indicator Generator - aznsite.mp4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>aznsite.mp4 - Regional Indicator</title>
 </head>
 
-<ul id="menu-bar">
-    <li class="active"><a href="../../index.html">Home</a></li>
-    <li>
-        <a href="#" class="dropLabel">aznbot.mp4 Tetris</a>
-        <ul>
-            <section>Leaderboards</section>
-            <li><a href="../leaderboard.html">Normal Tetris</a></li>
-            <li><a href="../leaderboard.html?mode=sprint">Sprint</a></li>
-            <li><a href="../leaderboard.html?mode=combo">Combo Challenge</a></li>
-            <li><a href="../leaderboard.html?mode=tetris">Tetris Only</a></li>
-            <li><a href="../leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
-            <section>Settings</section>
-            <li><a href="../customize.html">Customize</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#" class="dropLabel">Other Projects</a>
-        <ul>
-            <li><a href="https://www.roblox.com/games/6795867689/">Tetroblox</a></li>
-            <li><a href="#">Regional Indicator Generator</a></li>
-            <li><a href="../../quickcopy">QuickCopy</a></li>
-            <li><a href="../../schoolTeto">SchoolTeto</a></li>    
-        </ul>
-    </li>
-    <li><a class="button" href="../invite.html">Invite aznbot.mp4</a></li>
-</ul>
-<br><br>
 <body>
-    <div id="header">
-        <img src="../../src/thumbnail.png" style="width: 350px;">
-    </div>
+    <ul id="menu-bar">
+        <li class="active"><a href="../../index.html">Home</a></li>
+        <li>
+            <a href="#" class="dropLabel">aznbot.mp4 Tetris</a>
+            <ul>
+                <section>Leaderboards</section>
+                <li><a href="../leaderboard.html">Normal Tetris</a></li>
+                <li><a href="../leaderboard.html?mode=sprint">Sprint</a></li>
+                <li><a href="../leaderboard.html?mode=combo">Combo Challenge</a></li>
+                <li><a href="../leaderboard.html?mode=tetris">Tetris Only</a></li>
+                <li><a href="../leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
+                <section>Settings</section>
+                <li><a href="../customize.html">Customize</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropLabel">Other Projects</a>
+            <ul>
+                <li><a href="https://www.roblox.com/games/6795867689/">Tetroblox</a></li>
+                <li><a href="#">Regional Indicator Generator</a></li>
+                <li><a href="../../quickcopy">QuickCopy</a></li>
+                <li><a href="../../schoolTeto">SchoolTeto</a></li>    
+            </ul>
+        </li>
+        <li><a class="button" href="../invite.html">Invite aznbot.mp4</a></li>
+    </ul><br><br>
 
-    <div class="textcontainer">
-        <div class="float">
+    <img src="../../src/thumbnail.png" style="width: 75%; max-width: 360px; margin: auto;">
+
+    <div class="textcontainer" style="padding: 20px;">
+        <div class="textArea">
             <form>
             Input
             <br>
             <textarea id="input" placeholder="Type here!" onkeypress="return [42,35,32,13,33,63].includes(event.charCode) || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)"></textarea>
             </form>
         </div>
-        <div class="float">
+        <div class="textArea">
             Output
             <br>
             <textarea id="outputText" disabled="" placeholder="Output"></textarea>
             <div id="charWarn" style="opacity:0;">⚠️ Output is over 2,000 characters!</div>
         </div>
     </div>
-    <br>
     <button type="button" id="btnCopy" style="width: 150px">Copy</button>
-    <h6 style="color: gray;">by aznguy.mp4 :)</h6>
-    
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script src="../../module/clipboard.js"></script>
-    <script src="../../js/regional.js"></script>
+    <h6 style="color: gray;"><br>by aznguy.mp4 :)</h6>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="../../module/clipboard.js"></script>
+<script src="../../js/regional.js"></script>

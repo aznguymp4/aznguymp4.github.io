@@ -38,7 +38,7 @@ tr{
     background-color:rgb(35, 39, 42);
 }
 .bg-info{
-    background-color:rgb(114, 137, 218)!important;
+    background-color:#5865F2!important;
     border:5px solid transparent;
 }
 .score:hover{
