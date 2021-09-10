@@ -70,6 +70,11 @@ label:hover{
 }
 </style>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>aznsite.mp4 | Customize</title>
+</head>
+
 <ul id="menu-bar">
     <li class="active"><a href="../index.html">Home</a></li>
     <li>
@@ -107,16 +112,17 @@ label:hover{
     <div id="divForm" style="visibility: hidden; padding: 20px;">
         <h2 style="font-family: WhitneyBold; text-align: center;">Select Mino Skin</h2>
         <form id="form">
-            <div style="margin: auto; width: fit-content; display: flex; padding: 20px; background-color: 1b1e21; border-radius: 10px;">
-                <div id="l"></div>
+            <div id="formCont" style="margin: auto; width: fit-content; padding: 10px; background-color: 1b1e21; border-radius: 20px;">
+                <div id="skins" style="display: flex;">
+                    <div id="l"></div>
+                    <div style="visibility:hidden;" id="columnPad">m</div>
+                    <div id="r"></div>    
+                </div>
                 <div style="visibility:hidden;">m</div>
-                <div id="r"></div>
-                <div style="visibility:hidden;">m</div>
-                <div id="preview" style="padding: 10px; border-radius: 8px; margin: auto; width: fit-content; text-align: center; background-color: #2f3136;"></div>
+                <div id="preview" style="padding: 10px; border-radius: 10px; margin: auto; width: 260px; text-align: center; background-color: #2f3136;"></div>
             </div>
             <br>
             <input type="submit" class="button" id="save" style="margin: auto; text-decoration: none;" value="Save Changes">
-            <br>
         </form>
         <br>
     </div>
@@ -162,11 +168,10 @@ label:hover{
 
                 fetch("https://aznbotmp4.herokuapp.com/berisbot/skins",{method:'GET'}).then(async res => {
                     const skins = await res.json()
-                    console.log(skins)
                     Object.keys(skins).map((skin,idx) => {
                         var emojis = ''
                         'ZLOSIJT_'.split('').map(emoji => {
-                            emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=24>`
+                            emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=${isMobile?18:22}>`
                         });
                         (~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
                     })
@@ -174,16 +179,15 @@ label:hover{
                     $(`#${currentSkin}`).click()
                     $('#loading').css({visibility:'hidden'})
                     $('#divForm').css({visibility:'visible'})
+                    $('#formCont').css({display:isMobile?'block':'flex'})
+                    $('#preview').css({width:isMobile?220:240})
+                    if(isMobile) $('#columnPad').html('') //document.getElementsByClassName('columnPad')
 
                     $('#form').on('change', function(a) {
                         upd8Preview(skins, a.target.value)
                     })
 
                     upd8Preview(skins, currentSkin)
-                })
-
-                $('#save').on('click', function() {
-                    console.log($('#form').value)
                 })
             })
         }
@@ -192,11 +196,21 @@ label:hover{
         $('#notlogged').css({visibility: 'visible'})
     }
 
+    function changeSize() {
+        const w = $(window).width()
+        //if(w < 920) {
+            $('#skins').css({display:w<920?'block':'flex'})
+            $('#columnPad').html(w<920?'':'m')
+            $('#formCont').css({display:w<645?'block':'flex'})
+        //}
+    }; changeSize()
+    $(window).on('resize', changeSize)
+
     function upd8Preview(skins, current) {
         var previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
         preview.split(',').map(p => {
             var emoji = skins[current][p]
-            previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=24>`
+            previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=${isMobile?20:22}>`
         })
         $('#preview').html(previewHTML)
     }

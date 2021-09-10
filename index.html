@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>aznsite.mp4</title>
 </head>
 
@@ -57,7 +58,6 @@
     if(getCookie('token')) { token = getCookie('token')
         fetch('https://discord.com/api/users/@me', {headers: {Authorization: `Bearer ${token}`}, method: 'GET'}).then(async response2 => {
             const jsonRes = await response2.json()
-            console.log(token, jsonRes)
             if(jsonRes.message) {
                 setCookie('token', '', 0)
             } else {
