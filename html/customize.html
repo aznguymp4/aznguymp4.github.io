@@ -166,7 +166,7 @@ label:hover{
             checkToken(token).then(async () => {
                 var currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json()).data
 
-                fetch("https://aznbotmp4.herokuapp.com/berisbot/skins",{method:'GET'}).then(async res => {
+                fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{method:'GET'}).then(async res => {
                     const skins = await res.json()
                     Object.keys(skins).map((skin,idx) => {
                         var emojis = ''
