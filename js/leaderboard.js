@@ -93,7 +93,7 @@ function statToString(st) {
         `Bonus from Combos — ${stat[15]}`,
         `Bonus from B2B's — ${stat[16]}`,
         `Perfect Clears — ${stat[4]/6500}`
-    ].join('<br>')
+    ].join('<br>').replace('<hr><br>','<hr>')//weird code but whatevs
 }
 
 function buildTable(data,useLocalIDX){
