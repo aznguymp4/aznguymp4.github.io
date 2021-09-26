@@ -77,7 +77,8 @@ function statToString(st) {
     const stat = st.stat.split('|')
     return [
         `SCORE — ${score}`,
-        `—`.repeat(14),
+        //`—`.repeat(14),
+        `<hr>`,
         `Single — ${stat[0]/100}`,
         `Double — ${stat[1]/300}`,
         `Triple — ${stat[2]/500}`,
