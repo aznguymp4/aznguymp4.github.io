@@ -133,14 +133,14 @@ label:hover{
     if(token) {
         let pickParam = getParam('pickedSkin')
         if(pickParam) {
-            fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, mode:'cors', method:'POST' }).then(async res => {
+            fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, mode:'no-cors', method:'POST' }).then(async res => {
                 $('#loading').html(`${res.status==200?'🎉 Mino Skin successfully set!':'❌ Something went wrong...'}<h3></h3><a class="button" style="margin: auto;" href="../index.html">Back to Home</a>`)
             })
         } else {
             checkToken(token).then(async () => {
-                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'cors', method:'GET'})).json()).data
+                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'no-cors', method:'GET'})).json()).data
 
-                fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{mode:'cors', method:'GET'}).then(async res => {
+                fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{mode:'no-cors', method:'GET'}).then(async res => {
                     const skins = await res.json()
                     Object.keys(skins).map((skin,idx) => {
                         let emojis = ''
