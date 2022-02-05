@@ -138,7 +138,7 @@ label:hover{
             })
         } else {
             checkToken(token).then(async () => {
-                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'no-cors', method:'GET'})).json()).data
+                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'no-cors', method:'GET'})).json()).data;
 
                 fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{mode:'no-cors', method:'GET'}).then(async res => {
                     const skins = await res.json()
