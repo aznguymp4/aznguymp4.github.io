@@ -3,189 +3,191 @@
 
 <style>
 body{
-    background-color: rgb(35, 39, 42);
-    font-family: Whitney;
-    color: white;
+	background-color: rgb(35, 39, 42);
+	font-family: Whitney;
+	color: white;
 }
 .center {
-    top: 50%;
-    left: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    text-align: center;
+	top: 50%;
+	left: 50%;
+	position: fixed;
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
 
 label:hover{
-    cursor: pointer;
+	cursor: pointer;
 }
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
+	position: absolute;
+	left: -9999px;
 }
 [type="radio"]:checked + label,
 [type="radio"]:not(:checked) + label
 {
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
+	position: relative;
+	padding-left: 28px;
+	cursor: pointer;
+	line-height: 20px;
+	display: inline-block;
 }
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #414850;
-    border-radius: 50%;
-    background: #2a2f34;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #414850;
+	border-radius: 50%;
+	background: #2a2f34;
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #7289da;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+	content: '';
+	width: 12px;
+	height: 12px;
+	background: #7289da;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	border-radius: 100%;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 [type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
+	opacity: 0;
+	-webkit-transform: scale(0);
+	transform: scale(0);
 }
 [type="radio"]:checked + label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
 }
 </style>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>aznsite.mp4 | Customize</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>aznsite.mp4 | Customize</title>
 </head>
 
 <div id="navbar"></div><script src="../../js/navbar.js"></script>
 
 <body style="overflow-y: auto;">
-    <h2 id="loading" class="center"> <img src="https://cdn.discordapp.com/emojis/617153686602383379.gif"> Loading...</h2>
-    <h2 id="notlogged" class="center" style="visibility: hidden; font-family: WhitneyBold;">
-        You're not logged in!<br><div style="opacity: 0;">&#x200B;</div>
-        <a class="button" style="margin: auto;"  href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=http%3A%2F%2Fapi.aznguy.com%2F&response_type=code&scope=identify">Log in with Discord</a>
-    </h2>
+	<h2 id="loading" class="center"> <img src="https://cdn.discordapp.com/emojis/617153686602383379.gif"> Loading...</h2>
+	<h2 id="notlogged" class="center" style="visibility: hidden; font-family: WhitneyBold;">
+		You're not logged in!<br><div style="opacity: 0;">&#x200B;</div>
+		<a class="button" style="margin: auto;"  href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=http%3A%2F%2Fapi.aznguy.com%2F&response_type=code&scope=identify">Log in with Discord</a>
+	</h2>
 
-    <div id="divForm" style="visibility: hidden; padding: 20px;">
-        <h2 style="font-family: WhitneyBold; text-align: center;">Select Mino Skin</h2>
-        <form id="form">
-            <div id="formCont" style="margin: auto; width: fit-content; padding: 10px; background-color: 1b1e21; border-radius: 20px;">
-                <div id="skins" style="display: flex;">
-                    <div id="l"></div>
-                    <div style="visibility:hidden;" id="columnPad">m</div>
-                    <div id="r"></div>    
-                </div>
-                <div style="visibility:hidden;">m</div>
-                <div id="preview" style="padding: 10px; border-radius: 10px; margin: auto; width: 260px; text-align: center; background-color: #2f3136;"></div>
-            </div>
-            <br>
-            <input type="submit" class="button" id="save" style="margin: auto; text-decoration: none;" value="Save Changes">
-        </form>
-        <br>
-    </div>
+	<div id="divForm" style="visibility: hidden; padding: 20px;">
+		<h2 style="font-family: WhitneyBold; text-align: center;">Select Mino Skin</h2>
+		<form id="form">
+			<div id="formCont" style="margin: auto; width: fit-content; padding: 10px; background-color: 1b1e21; border-radius: 20px;">
+				<div id="skins" style="display: flex;">
+					<div id="l"></div>
+					<div style="visibility:hidden;" id="columnPad">m</div>
+					<div id="r"></div>    
+				</div>
+				<div style="visibility:hidden;">m</div>
+				<div id="preview" style="padding: 10px; border-radius: 10px; margin: auto; width: 260px; text-align: center; background-color: #2f3136;"></div>
+			</div>
+			<br>
+			<input type="submit" class="button" id="save" style="margin: auto; text-decoration: none;" value="Save Changes">
+		</form>
+		<br>
+	</div>
 </body>
 
 <script src="../js/functions.js"></script>
 <script>
-    const preview = `\
-     .,.,.,.,.,.,T,.,.,.,
-    ,.,.,.,.,.,T,T,.,.,I,
-    ,.,.,.,.,.,.,T,.,.,I,
-    ,J,J,T,.,.,.,.,.,Z,I,
-    ,J,T,T,L,.,.,.,Z,Z,I,
-    ,J,I,T,L,.,.,GT,Z,O,O,
-    ,I,I,S,L,L,GT,GT,.,O,O,
-    ,I,I,S,S,O,O,GT,J,J,Z,
-    ,I,I,S,S,O,O,.,J,Z,Z,
-    ,I,T,S,S,O,O,.,J,Z,L,
-    ,T,T,L,S,O,O,.,L,L,L,
-    ,T,T,L,J,J,J,.,L,L,L,
-    ,T,T,L,L,S,J,.,L,O,O,
-    ,T,Z,Z,Z,S,S,.,J,O,O,
-    ,Z,Z,S,Z,Z,S,.,J,J,J,
-    ,_,_,_,_,_,.,_,_,_,_,
-    ,_,_,_,_,_,.,_,_,_,_,
-    ,_,_,_,.,_,_,_,_,_,_,
-    ,_,.,_,_,_,_,_,_,_,_,
-    ,_,_,.,_,_,_,_,_,_,_,
-    ,_,_,_,_,_,_,.,_,_,_`.replace(/ /g,'')
-    const form = document.getElementById('form')
-    const l = document.getElementById('l')
-    const r = document.getElementById('r')
-    let token = LS.token
-    if(token) {
-        let pickParam = getParam('pickedSkin')
-        if(pickParam) {
-            fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, mode:'no-cors', method:'POST' }).then(async res => {
-                $('#loading').html(`${res.status==200?'🎉 Mino Skin successfully set!':'❌ Something went wrong...'}<h3></h3><a class="button" style="margin: auto;" href="../index.html">Back to Home</a>`)
-            })
-        } else {
-            checkToken(token).then(async () => {
-                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'no-cors', method:'GET'})).json()).data;
+	const preview = `\
+	 .,.,.,.,.,.,T,.,.,.,
+	,.,.,.,.,.,T,T,.,.,I,
+	,.,.,.,.,.,.,T,.,.,I,
+	,J,J,T,.,.,.,.,.,Z,I,
+	,J,T,T,L,.,.,.,Z,Z,I,
+	,J,I,T,L,.,.,GT,Z,O,O,
+	,I,I,S,L,L,GT,GT,.,O,O,
+	,I,I,S,S,O,O,GT,J,J,Z,
+	,I,I,S,S,O,O,.,J,Z,Z,
+	,I,T,S,S,O,O,.,J,Z,L,
+	,T,T,L,S,O,O,.,L,L,L,
+	,T,T,L,J,J,J,.,L,L,L,
+	,T,T,L,L,S,J,.,L,O,O,
+	,T,Z,Z,Z,S,S,.,J,O,O,
+	,Z,Z,S,Z,Z,S,.,J,J,J,
+	,_,_,_,_,_,.,_,_,_,_,
+	,_,_,_,_,_,.,_,_,_,_,
+	,_,_,_,.,_,_,_,_,_,_,
+	,_,.,_,_,_,_,_,_,_,_,
+	,_,_,.,_,_,_,_,_,_,_,
+	,_,_,_,_,_,_,.,_,_,_`.replace(/ /g,'')
+	const form = document.getElementById('form')
+	const l = document.getElementById('l')
+	const r = document.getElementById('r')
+	let token = LS.token
+	if(token) {
+		let pickParam = getParam('pickedSkin')
+		if(pickParam) {
+			fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, mode:'no-cors', method:'POST' }).then(async res => {
+				$('#loading').html(`${res.status==200?'🎉 Mino Skin successfully set!':'❌ Something went wrong...'}<h3></h3><a class="button" style="margin: auto;" href="../index.html">Back to Home</a>`)
+			})
+		} else {
+			checkToken(token).then(async () => {
+				fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{mode:'no-cors', method:'GET'}).then(dat => {
+					dat.json().then(currentSkin => {
+						fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{mode:'no-cors', method:'GET'}).then(async res => {
+							const skins = await res.json()
+							Object.keys(skins).map((skin,idx) => {
+								let emojis = ''
+								'ZLOSIJT_'.split('').map(emoji => {
+									emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=${isMobile?18:22}>`
+								});
+								(~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
+							})
 
-                fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{mode:'no-cors', method:'GET'}).then(async res => {
-                    const skins = await res.json()
-                    Object.keys(skins).map((skin,idx) => {
-                        let emojis = ''
-                        'ZLOSIJT_'.split('').map(emoji => {
-                            emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=${isMobile?18:22}>`
-                        });
-                        (~~Object.keys(skins).length/2>idx?l:r).innerHTML += `<skin><label for="${skin}">${emojis}</label> <input type="radio" id="${skin}" name="pickedSkin" value="${skin}"> <label for="${skin}">${skin}</label></skin><br>`
-                    })
+							$(`#${currentSkin.data}`).click()
+							$('#loading').css({visibility:'hidden'})
+							$('#divForm').css({visibility:'visible'})
+							$('#formCont').css({display:isMobile?'block':'flex'})
+							$('#preview').css({width:isMobile?220:240})
+							if(isMobile) $('#columnPad').html('') //document.getElementsByClassName('columnPad')
 
-                    $(`#${currentSkin}`).click()
-                    $('#loading').css({visibility:'hidden'})
-                    $('#divForm').css({visibility:'visible'})
-                    $('#formCont').css({display:isMobile?'block':'flex'})
-                    $('#preview').css({width:isMobile?220:240})
-                    if(isMobile) $('#columnPad').html('') //document.getElementsByClassName('columnPad')
+							$('#form').on('change', function(a) {
+								upd8Preview(skins, a.target.value)
+							})
 
-                    $('#form').on('change', function(a) {
-                        upd8Preview(skins, a.target.value)
-                    })
+							upd8Preview(skins, currentSkin.data)
+						})
+					})
+				})
+			})
+		}
+	} else {
+		$('#loading').css({visibility: 'hidden'})
+		$('#notlogged').css({visibility: 'visible'})
+	}
 
-                    upd8Preview(skins, currentSkin)
-                })
-            })
-        }
-    } else {
-        $('#loading').css({visibility: 'hidden'})
-        $('#notlogged').css({visibility: 'visible'})
-    }
+	function changeSize() {
+		const w = $(window).width()
+		//if(w < 920) {
+			$('#skins').css({display:w<920?'block':'flex'})
+			$('#columnPad').html(w<920?'':'m')
+			$('#formCont').css({display:w<645?'block':'flex'})
+		//}
+	}; changeSize()
+	$(window).on('resize', changeSize)
 
-    function changeSize() {
-        const w = $(window).width()
-        //if(w < 920) {
-            $('#skins').css({display:w<920?'block':'flex'})
-            $('#columnPad').html(w<920?'':'m')
-            $('#formCont').css({display:w<645?'block':'flex'})
-        //}
-    }; changeSize()
-    $(window).on('resize', changeSize)
-
-    function upd8Preview(skins, current) {
-        let previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
-        preview.split(',').map(p => {
-            let emoji = skins[current][p]
-            previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=${isMobile?20:22}>`
-        })
-        $('#preview').html(previewHTML)
-    }
+	function upd8Preview(skins, current) {
+		let previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
+		preview.split(',').map(p => {
+			let emoji = skins[current][p]
+			previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=${isMobile?20:22}>`
+		})
+		$('#preview').html(previewHTML)
+	}
 </script>
