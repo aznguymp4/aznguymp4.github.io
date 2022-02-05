@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 <style>
@@ -75,39 +74,13 @@ label:hover{
     <title>aznsite.mp4 | Customize</title>
 </head>
 
-<ul id="menu-bar">
-    <li class="active"><a href="../index.html">Home</a></li>
-    <li>
-        <a href="#" class="dropLabel">aznbot.mp4 Tetris</a>
-        <ul>
-            <section>Leaderboards</section>
-            <li><a href="./leaderboard.html">Normal Tetris</a></li>
-            <li><a href="./leaderboard.html?mode=sprint">Sprint</a></li>
-            <li><a href="./leaderboard.html?mode=combo">Combo Challenge</a></li>
-            <li><a href="./leaderboard.html?mode=tetris">Tetris Only</a></li>
-            <li><a href="./leaderboard.html?mode=t-spin">T-Spin Doubles Only</a></li>
-            <section>Settings</section>
-            <li><a href="#">Customize</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#" class="dropLabel">Other Projects</a>
-        <ul>
-            <li><a href="https://www.roblox.com/games/6795867689/">Tetroblox</a></li>
-            <li><a href="./DiscordTools/regional.html">Regional Indicator Generator</a></li>
-            <li><a href="../quickcopy">QuickCopy</a></li>
-            <li><a href="../schoolTeto">SchoolTeto</a></li>
-            <li><a href="../schoolPong">SchoolPong</a></li>
-        </ul>
-    </li>
-    <li><a class="button" href="./invite.html">Invite aznbot.mp4</a></li>
-</ul>
+<div id="navbar"></div><script src="../../js/navbar.js"></script>
 
 <body style="overflow-y: auto;">
     <h2 id="loading" class="center"> <img src="https://cdn.discordapp.com/emojis/617153686602383379.gif"> Loading...</h2>
-    <h2 id="notlogged" class="center" style="visibility: hidden;">
-        You're not logged in!<br>.<br>.<br>.
-        <a class="button" style="margin: auto;" href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznbotmp4.herokuapp.com%2F&response_type=code&scope=identify">Log in with Discord</a>
+    <h2 id="notlogged" class="center" style="visibility: hidden; font-family: WhitneyBold;">
+        You're not logged in!<br><div style="opacity: 0;">&#x200B;</div>
+        <a class="button" style="margin: auto;"  href="https://discord.com/api/oauth2/authorize?client_id=622243899469201438&redirect_uri=https%3A%2F%2Faznbotmp4.herokuapp.com%2F&response_type=code&scope=identify">Log in with Discord</a>
     </h2>
 
     <div id="divForm" style="visibility: hidden; padding: 20px;">
@@ -156,21 +129,21 @@ label:hover{
     const form = document.getElementById('form')
     const l = document.getElementById('l')
     const r = document.getElementById('r')
-    var token = getCookie('token')
+    let token = LS.token
     if(token) {
-        var pickParam = getParam('pickedSkin')
+        let pickParam = getParam('pickedSkin')
         if(pickParam) {
             fetch(`https://aznbotmp4.herokuapp.com/berisbot/setSkin`,{ headers: { 'Content-Type': 'application/json', Authorization: token }, body: `{"newSkin":"${pickParam}"}`, method:'POST' }).then(async res => {
                 $('#loading').html(`${res.status==200?'🎉 Mino Skin successfully set!':'❌ Something went wrong...'}<h3></h3><a class="button" style="margin: auto;" href="../index.html">Back to Home</a>`)
             })
         } else {
             checkToken(token).then(async () => {
-                var currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json()).data
+                let currentSkin = (await(await fetch(`https://aznbotmp4.herokuapp.com/berisbot/getSkin/${token}`,{method:'GET'})).json()).data
 
                 fetch('https://aznbotmp4.herokuapp.com/berisbot/skins',{method:'GET'}).then(async res => {
                     const skins = await res.json()
                     Object.keys(skins).map((skin,idx) => {
-                        var emojis = ''
+                        let emojis = ''
                         'ZLOSIJT_'.split('').map(emoji => {
                             emojis += `<img src="https://cdn.discordapp.com/emojis/${extractNums(skins[skin][emoji])}.${/<a:/.test(skins[skin][emoji])?'gif':'png'}" width=${isMobile?18:22}>`
                         });
@@ -208,9 +181,9 @@ label:hover{
     $(window).on('resize', changeSize)
 
     function upd8Preview(skins, current) {
-        var previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
+        let previewHTML = '<h3 style="font-family:WhitneyBold;">Preview</h3><br>'
         preview.split(',').map(p => {
-            var emoji = skins[current][p]
+            let emoji = skins[current][p]
             previewHTML += p=='\n'?'<br>':`<img src="https://cdn.discordapp.com/emojis/${p=='.'?'679457335772577818.png':`${extractNums(emoji)}.${/<a:/.test(emoji)?'gif':'png'}`}" width=${isMobile?20:22}>`
         })
         $('#preview').html(previewHTML)

@@ -1,3 +1,6 @@
+LS = localStorage
+SS = sessionStorage
+
 function getContents(url, raw, type, send, headers) { // Get contents from a URL
     var xhr = new XMLHttpRequest()
     xhr.open(type ? type : "GET", url, false) // true = asynchronous request | false = synchronous request

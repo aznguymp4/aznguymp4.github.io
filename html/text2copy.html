@@ -1,0 +1,10 @@
+<title>aznsite.mp4 - Text File</title>
+<style>@font-face{font-family:Whitney;src:url("https://raw.githubusercontent.com/aznguymp4/aznguymp4.github.io/master/fonts/Whitney.ttf") format("truetype")}body{background-color:#37383d;color:#fff;font-family:Whitney}#embed{overflow-y:scroll;top:0;transform:translate(-50%,0);height:100%;width:100%;padding:20px;box-sizing:border-box}#out{height:100%;width:100%;max-height:800px;max-width:800px;border-radius:7px}.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.debug{border:3px solid green}#out{background-color:#303036}#btnCopy{font-family:Whitney;color:#fff;border-radius:7px;border-style:none;font-size:18px;padding:14px;background:#5b65ea;text-decoration:none;transition:all .2s ease-out;bottom:0;width:150px;height:50px;top:100%;transform:translate(-50%,-100%);margin:auto;filter:drop-shadow(10px 10px 10px #0000007e) drop-shadow(-3px -3px 10px #ffffff2c)}#btnCopy:hover{cursor:pointer;background:#4652c5;text-decoration:none;width:170px}.success{background:#26a85c!important}.fail{background:#db504c!important}</style>
+<body>
+<div class="center" id="out">
+<div id="embed" class="center">{TEXT2COPY}</div>
+<button type="button" id="btnCopy" class="center">Copy Text</button>
+</div>
+</body>
+<script src="https://aznguymp4.github.io/module/clipboard.js"></script>
+<script>let btn=document.getElementById("btnCopy");btn.addEventListener("click",function(e){new ClipboardJS("#btnCopy",{text:function(e){return success=!0,btn.classList.add(success?"success":"fail"),btn.innerText=success?"Copied!":"Failed to copy!",setTimeout(()=>{btn.classList.remove(success?"success":"fail"),btn.innerText="Copy Text"},1200),document.getElementById("embed").innerText}})});</script>

@@ -1,7 +1,7 @@
 // Made by aznguy.mp4
 // 06/13/2020
 function replace(input) {
-    var letters = {
+    let letters = {
         'a': ':regional_indicator_a:\u200A', // ALL LETTERS HAVE A \u200A AFTER IT TO PREVENT LETTERS FROM TURNING INTO FLAG EMOJIS
         'b': ':regional_indicator_b:\u200A', // for some reason, using \u200B doesn't work on iOS devices
         'c': ':regional_indicator_c:\u200A',

@@ -6,6 +6,11 @@
     font-family: WhitneyBold;
     src: url("../fonts/Whitney-Bold.ttf") format("truetype");
 }
+.PRELOOOOOAD{
+    animation-duration: 0s !important;
+    -webkit-animation-duration: 0s !important;
+    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
 #menu-bar {
     overflow-x:visible;
     font-family: Whitney !important;
@@ -43,7 +48,9 @@
 }
 
 #menu-bar a {
-    transition: all 0.15s ease-out;
+    transition: background 0.15s, color 0.15s, transform 0.2s;
+    transition-timing-function: ease-out;
+    border-radius: 5px;
     font-size: 12px;
     color: #E7E5E5;
     text-decoration: none;
@@ -63,7 +70,6 @@
 
 #menu-bar .active a,
 #menu-bar li:hover a, .button:hover {
-    border-radius: 5px;
     background: #2C2F33;
     color: #FFFFFF;
 }
@@ -89,7 +95,7 @@
 #menu-bar ul {
     transform-origin: top;
     transform: scaleY(0);
-    transition: all 0.2s ease-out;
+    transition: transform .4s cubic-bezier(0,.6,.4,1);
     background: rgba(31, 31, 31, 0.8);
     display: block;
     margin: 0;
@@ -164,7 +170,7 @@ html[xmlns] #menu-bar {
     text-decoration: none;
     width: fit-content;
     border-radius: 3px;
-    transition: all 0.2s ease-out;
+    transition: background 0.2s ease-out;
 }
 
 .dropLabel:hover, section:hover{
