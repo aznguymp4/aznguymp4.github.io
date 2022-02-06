@@ -50,7 +50,7 @@
 #menu-bar a {
     transition: background 0.15s, color 0.15s, transform 0.2s;
     transition-timing-function: ease-out;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 12px;
     color: #E7E5E5;
     text-decoration: none;
@@ -169,7 +169,7 @@ html[xmlns] #menu-bar {
     text-align: center;
     text-decoration: none;
     width: fit-content;
-    border-radius: 3px;
+    border-radius: 4px;
     transition: background 0.2s ease-out;
 }
 

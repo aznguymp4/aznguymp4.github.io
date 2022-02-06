@@ -29,7 +29,8 @@ const navbarHtml = `
             <li><a href="https://studio.code.org/projects/applab/KnxEbJit7V0PI7Lf91kA82rFSoEEz33W4blzfgPyYWw">Wishcord</a></li>
         </ul>
     </li>
-    <li><a class="button" href="/html/invite.html">Invite aznbot.mp4</a></li>
+    <li><a class="button" href="/invite.html">Invite aznbot.mp4</a></li>
+    <li><a class="button" style="background:#379856" href="https://ko-fi.com/aznguymp4">Buy me <s style="opacity:50%">a coffee</s> boba?</a></li>
 </ul>`
 
 document.getElementById('navbar').innerHTML = navbarHtml
