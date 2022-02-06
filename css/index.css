@@ -1,3 +1,7 @@
+body{
+    overflow-x: none;
+}
+
 .container {
     display: flex;
     width: 100%;
@@ -16,7 +20,7 @@
 }
 
 #don {
-    position: absolute;
+    position: fixed;
     left: 10px;
     bottom: 10px;
     width: 200px;
