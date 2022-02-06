@@ -70,7 +70,8 @@
 
 #menu-bar .active a,
 #menu-bar li:hover a, .button:hover {
-    background: #2C2F33;
+    text-decoration: none;
+    background: #2C2F33!important;
     color: #FFFFFF;
 }
 
@@ -160,7 +161,7 @@ html[xmlns] #menu-bar {
 .button {
     background: #5865F2;
     border: none;
-    padding: 10px 10px;
+    padding: 10px 15px;
     line-height: 15px;
     color: #fff;
     font-family: Whitney;
