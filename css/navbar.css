@@ -9,7 +9,7 @@
 .PRELOOOOOAD{
     animation-duration: 0s !important;
     -webkit-animation-duration: 0s !important;
-    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+    transition: all 0s, font-size 0s, background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
 }
 #menu-bar {
     overflow-x:visible;
@@ -48,7 +48,7 @@
 }
 
 #menu-bar a {
-    transition: background 0.15s, color 0.15s, transform 0.2s;
+    transition: background 0.15s, color 0.15s, transform 0.2s, font-size .2s;
     transition-timing-function: ease-out;
     border-radius: 4px;
     font-size: 12px;
@@ -58,6 +58,7 @@
     padding: 6px 20px 6px 20px;
     margin: 0;
     margin-bottom: 6px;
+    z-index: 0;
 }
 
 #menu-bar li ul li a {
@@ -69,14 +70,13 @@
 }
 
 #menu-bar .active a,
-#menu-bar li:hover a, .button:hover {
+.button:hover {
     text-decoration: none;
-    background: #2C2F33!important;
+    background: #2C2F33 !important;
     color: #FFFFFF;
 }
 
-#menu-bar ul li:hover a,
-#menu-bar li:hover li a {
+#menu-bar ul li:hover a,#menu-bar li:hover li a {
     background: none;
     border: none;
     color: rgba(32, 32, 32, 0.5);
@@ -85,8 +85,8 @@
 #menu-bar ul a:hover {
     background-color: #5865F2 !important;
     color: #FFFFFF !important;
-    font-family: WhitneyBold;
     transform: scale(1.05);
+    font-size: 14px;
 }
 
 #menu-bar li:hover>ul {
@@ -96,7 +96,7 @@
 #menu-bar ul {
     transform-origin: top;
     transform: scaleY(0);
-    transition: transform .4s cubic-bezier(0,.6,.4,1);
+    transition: transform .3s cubic-bezier(0,.6,.4,1);
     background: rgba(31, 31, 31, 0.8);
     display: block;
     margin: 0;

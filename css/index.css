@@ -14,3 +14,11 @@
     display: inline;
     margin: 8px;
 }
+
+#don {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: 200px;
+    opacity: 10%;
+}
