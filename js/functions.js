@@ -38,7 +38,7 @@ function time12hr(date) {
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${minutes} ${hours >= 12? "AM" : "PM"}`
 }
 function extractNums(str) {
-    return str.replace(/[^.\d]/g,'')
+    return (str+'').replace(/\D/g,'')
 }
 function setCookie(e, t, n) {
     const o = new Date;
