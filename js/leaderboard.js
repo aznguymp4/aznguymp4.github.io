@@ -32,7 +32,7 @@ date.setAttribute('style', 'text-align:center')
 columns.insertBefore(date, document.getElementById('time').nextSibling)
 
 setTimeout(()=>{
-	fetch(`http://localhost:60943/berisbot/scores/${gameMode}`,{method:'GET'}).then(d => {
+	fetch(`https://aznbotmp4.herokuapp.com/berisbot/scores/${gameMode}`,{method:'GET'}).then(d => {
 	d.json().then(scoresJson => {
 		const scores = reform(scoresJson).sort(scoreSort).filter(function(v,i,a) { return a.map(sc=>{return sc.stat}).indexOf(v.stat) == i })
 		buildTable(scores)
