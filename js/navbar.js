@@ -1,9 +1,9 @@
 const navbarHtml = `
 <link rel="stylesheet" type="text/css" href="../../css/navbar.css"/>
 <ul id="menu-bar" class="PRELOOOOOAD">
-    <li class="active"><a href="/">Home</a></li>
+    <li class="active"><a class="PRELOOOOOAD" href="/">Home</a></li>
     <li>
-        <a class="dropLabel">aznbot.mp4 Tetris</a>
+        <a class="dropLabel PRELOOOOOAD">aznbot.mp4 Tetris</a>
         <ul class="PRELOOOOOAD">
             <section>Leaderboards</section>
             <li><a href="/html/leaderboard.html">Normal Tetris</a></li>
@@ -16,7 +16,7 @@ const navbarHtml = `
         </ul>
     </li>
     <li>
-        <a class="dropLabel">Other Projects</a>
+        <a class="dropLabel PRELOOOOOAD">Other Projects</a>
         <ul class="PRELOOOOOAD">
             <section>Some Stuff</section>
             <li><a href="https://www.roblox.com/games/6795867689/">Tetroblox</a></li>
@@ -29,9 +29,9 @@ const navbarHtml = `
             <li><a href="https://studio.code.org/projects/applab/KnxEbJit7V0PI7Lf91kA82rFSoEEz33W4blzfgPyYWw">Wishcord</a></li>
         </ul>
     </li>
-    <li><a class="button" href="/invite.html">Invite aznbot.mp4</a></li>
-    <li><a class="button" href="https://discord.gg/ZXQ6yXtWjG">Discord Server</a></li>
-    <li><a class="button" style="background:#379856" href="https://ko-fi.com/aznguymp4">Buy me <s style="opacity:50%">a coffee</s> boba?</a></li>
+    <li><a class="button PRELOOOOOAD" href="/invite.html">Invite aznbot.mp4</a></li>
+    <li><a class="button PRELOOOOOAD" href="https://discord.gg/ZXQ6yXtWjG">Discord Server</a></li>
+    <li><a class="button PRELOOOOOAD" style="background:#379856" href="https://ko-fi.com/aznguymp4">Buy me <s style="opacity:50%">a coffee</s> boba?</a></li>
 </ul>`
 
 document.getElementById('navbar').innerHTML = navbarHtml
