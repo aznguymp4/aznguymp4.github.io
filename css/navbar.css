@@ -40,7 +40,7 @@
 
 #menu-bar li {
     margin: 0px 0px 6px 0px;
-    padding: 0px 6px 0px 6px;
+    padding: 0px 0px 0px 6px;
     float: left;
     text-align: left;
     position: relative;
@@ -55,7 +55,7 @@
     color: #E7E5E5;
     text-decoration: none;
     display: block;
-    padding: 6px 20px 6px 20px;
+    padding: 6px 15px 6px 15px;
     margin: 0;
     margin-bottom: 6px;
     z-index: 0;
