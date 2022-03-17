@@ -30,6 +30,7 @@ const navbarHtml = `
         </ul>
     </li>
     <li><a class="button PRELOOOOOAD" href="/invite.html">Invite aznbot.mp4</a></li>
+    <li><a class="button PRELOOOOOAD" href="https://discord.gg/ZXQ6yXtWjG">Discord Server</a></li>
     <li><a class="button PRELOOOOOAD" style="background:#379856" href="https://ko-fi.com/aznguymp4">Buy me <s style="opacity:50%">a coffee</s> boba?</a></li>
 </ul>`
 
