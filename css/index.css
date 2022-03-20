@@ -20,15 +20,19 @@ body{
 }
 
 #don {
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
+    position: fixed !important;
+    left: 10px !important;
+    bottom: 10px !important;
     width: 200px;
     opacity: 10%;
 }
 
-#widget {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
+iframe#widget {
+    position: fixed !important;
+    right: 10px !important;
+    bottom: 10px !important;
+}
+
+.widgetHeader-2Hz_Ln{
+    background-color: #5865F2 !important;
 }

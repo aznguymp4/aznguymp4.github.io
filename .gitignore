@@ -1,3 +1,5 @@
 
 *.env
 js/env.js
+.vscode/settings.json
+.DS_Store
