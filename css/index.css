@@ -26,3 +26,9 @@ body{
     width: 200px;
     opacity: 10%;
 }
+
+#widget {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
