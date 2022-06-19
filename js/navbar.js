@@ -27,6 +27,7 @@ const navbarHtml = `
             <li><a href="/schoolTeto/">SchoolTeto</a></li>
             <li><a href="/schoolPong/">SchoolPong</a></li>
             <li><a href="/schoolSnake/">SchoolSnake</a></li>
+            <li><a href="/schoolWordle/">SchoolWordle</a></li>
             <li><a href="https://studio.code.org/projects/applab/KnxEbJit7V0PI7Lf91kA82rFSoEEz33W4blzfgPyYWw">Wishcord</a></li>
         </ul>
     </li>
