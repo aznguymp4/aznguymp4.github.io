@@ -21,6 +21,7 @@ const navbarHtml = `
             <section>Some Stuff</section>
             <li><a href="https://www.roblox.com/games/9524312968/">Find the Hats!</a></li>
             <li><a href="https://www.roblox.com/games/6795867689/">Tetroblox</a></li>
+            <li><a href="/eatz/">EATZ</a></li>
             <li><a href="/html/DiscordTools/regional.html">Regional Indicator Generator</a></li>
             <li><a href="/quickcopy/">QuickCopy</a></li>
             <section>School Projects</section>
