@@ -35,7 +35,7 @@ let hitBottom = false
 let displaying = 0
 
 setTimeout(()=>{
-	fetch(`https://aznbotmp4.herokuapp.com/berisbot/scores/${gameMode}`,{method:'GET'}).then(d => {d.json().then(scores => {
+	fetch(`https://api.aznguy.com/berisbot/scores/${gameMode}`,{method:'GET'}).then(d => {d.json().then(scores => {
 		buildTable(scores, false, 0, showAtTime)
 		
 		$('#load').remove()
