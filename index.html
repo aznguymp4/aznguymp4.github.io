@@ -51,7 +51,7 @@
                 btn.on('click', () => {delete LS.token})
                 document.getElementById('btnIN').href = window.location.origin
                 console.log('Fetched user data:', jsonRes)
-                $(`#loggedAs`).html(`<img class="pfp" src="https://cdn.discordapp.com/avatars/${jsonRes.id}/${jsonRes.avatar}.${jsonRes.avatar.startsWith('a_')?'gif':'png'}">Logged in as &#x200B;<div style="font-family:WhitneyBold">${jsonRes.username}</div><div style="color:grey;">#${jsonRes.discriminator}</div>`)
+                $(`#loggedAs`).html(`<img class="pfp" src="https://cdn.discordapp.com/avatars/${jsonRes.id}/${jsonRes.avatar}.${jsonRes.avatar.startsWith('a_')?'gif':'png'}">Logged in as &#x200B;<div style="font-family:WhitneyBold">${jsonRes.discriminator==0?'@':''}${jsonRes.username}</div><div style="color:grey;">${jsonRes.discriminator!=0?`#${jsonRes.discriminator}`:''}</div>`)
             }
         })
     }
